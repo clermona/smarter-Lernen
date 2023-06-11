@@ -19,7 +19,7 @@ interface CardDao {
     fun update(card: Card)
 
     @Insert
-    fun insertAll(vararg card: Card)
+    fun insert(vararg card: Card)
 
     @Delete
     fun delete(card: Card)

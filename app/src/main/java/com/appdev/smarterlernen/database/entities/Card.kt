@@ -10,12 +10,13 @@ import androidx.room.PrimaryKey
     foreignKeys = [ForeignKey(entity = Stack::class, parentColumns = ["id"], childColumns = ["stack_id"])]
 )
 data class Card (
-    @PrimaryKey val id: Int,
-    @ColumnInfo(name = "stack_id") val stackId: Int,
-    @ColumnInfo(name = "title") val title: String?,
-    @ColumnInfo(name = "front_side") val frontSide: String?,
-    @ColumnInfo(name = "back_side") val backSide: String?,
-    @ColumnInfo(name = "tag") val tag: String?,
-    @ColumnInfo(name = "status") val status: String?,
-    @ColumnInfo(name = "ghost_status") val ghostStatus: Boolean?,
+    @ColumnInfo(name = "title") var title: String?,
+    @ColumnInfo(name = "stack_id") var stackId: Int,
+
+    @ColumnInfo(name = "front_side") var frontSide: String? = "",
+    @ColumnInfo(name = "back_side") var backSide: String? = "",
+    @ColumnInfo(name = "tag") var tag: String? = "",
+    @ColumnInfo(name = "status") var status: String? = "",
+    @ColumnInfo(name = "ghost_status") var ghostStatus: Boolean? = false,
+    @PrimaryKey var id: Int = (0..65535).random()
 )
