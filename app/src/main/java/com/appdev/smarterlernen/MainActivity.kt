@@ -1,6 +1,5 @@
 package com.appdev.smarterlernen
 
-import PagerAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         viewPager=binding.viewPager
 
         val adapter = PagerAdapter(supportFragmentManager)
-        adapter.addFragment(StackOverview(), "Stapelübersicht")
+        adapter.addFragment(StackOverview(), "Stapel")
         adapter.addFragment(AddCards(), "Karten Hinzufügen")
         adapter.addFragment(CardManagement(), "Verwaltung")
         viewPager.adapter = adapter
