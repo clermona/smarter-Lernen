@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = PagerAdapter(supportFragmentManager)
         adapter.addFragment(StackOverview(), "Stapel")
-        adapter.addFragment(AddCards(), "Karten Hinzufügen")
         adapter.addFragment(CardManagement(), "Verwaltung")
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)

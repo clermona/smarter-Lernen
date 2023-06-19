@@ -9,8 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.appdev.smarterlernen.R
-import com.appdev.smarterlernen.StackDetailActivity
+
 
 class StackOverview : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -26,7 +25,6 @@ class StackOverview : Fragment() {
         val items = listOf("Lineare Optimierung", "Stochastik", "Grundbegriffe des Öffentlichen Rechts und Privatrechts", "App Development")
         val adapter = StackAdapter(items) { item ->
             // Handle the click event for the list item
-
             onStackItemClick(item)
         }
         recyclerView.adapter = adapter
@@ -37,7 +35,7 @@ class StackOverview : Fragment() {
         // Handle the click event for the stack item
         Toast.makeText(requireContext(), "Clicked: $item", Toast.LENGTH_SHORT).show()
 
-        // Open the stack detail activity or navigate to a new fragment
+        // Open the stack detail activity
         val intent = Intent(requireContext(), StackDetailActivity::class.java)
         intent.putExtra("selectedStack", item)
         startActivity(intent)
