@@ -7,7 +7,6 @@
     tools:context=".AddCardActivity"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:id="@+id/cardContainer"
         android:layout_width="match_parent"
@@ -89,9 +88,16 @@
 
     </LinearLayout>
 
-
-
-
+    <Button
+        android:id="@+id/aaCardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardContainer"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="12dp"
+        android:text="Karte hinzufügen" />
 
 
 </RelativeLayout>
