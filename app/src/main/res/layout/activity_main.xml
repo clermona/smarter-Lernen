@@ -19,54 +19,48 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Floating action button for add alarm -->
-    <!-- Make sure that you are constraining this
-         button to the parent button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:src="?attr/actionModeSelectAllDrawable"
+        android:visibility="invisible"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAdd"
         app:layout_constraintEnd_toEndOf="@+id/fabAdd"
         app:layout_constraintStart_toStartOf="@+id/fabAdd" />
 
-    <!-- Action name text for the add alarm button -->
-    <!-- Make sure that you are constraining this Text to
-         the add Alarm FAB button -->
     <TextView
         android:id="@+id/add_card_action_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Add Card"
+        android:text="Karte hinzufügen"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/fabAddCard"
         app:layout_constraintEnd_toStartOf="@+id/fabAddCard"
         app:layout_constraintTop_toTopOf="@+id/fabAddCard" />
 
-    <!-- Floating action button for add person -->
-    <!-- Make sure that you are constraining this
-         button to the add Alarm FAB button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddStack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:src="?attr/actionModePasteDrawable"
+        android:visibility="invisible"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAddCard"
         app:layout_constraintEnd_toEndOf="@+id/fabAddCard"
         app:layout_constraintStart_toStartOf="@+id/fabAddCard" />
 
-    <!-- Action name text for the add person button -->
-    <!-- Make sure that you are constraining this Text
-         to the add Person FAB button -->
     <TextView
         android:id="@+id/add_stack_action_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Add Stack"
+        android:text="Stapel hinzufügen"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/fabAddStack"
         app:layout_constraintEnd_toStartOf="@+id/fabAddStack"
         app:layout_constraintTop_toTopOf="@+id/fabAddStack" />
