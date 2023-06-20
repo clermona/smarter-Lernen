@@ -97,7 +97,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="132dp"
         android:layout_marginEnd="12dp"
-        android:text="Karte hinzufügen" />
+        android:text="@string/button_text_add_card" />
 
 
 </RelativeLayout>

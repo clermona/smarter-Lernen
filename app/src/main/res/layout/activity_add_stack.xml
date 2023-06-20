@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Stapel erstellen"
+        android:text="@string/label_create_stack"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -31,8 +31,8 @@
                 android:id="@+id/newStack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="Name: " />
+                android:text="@string/label_stack_name"
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/addStackText"
@@ -55,14 +55,14 @@
                 android:id="@+id/createStackbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stapel erstellen" />
+                android:text="@string/button_text_create_stack" />
 
             <Button
                 android:id="@+id/addCardsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Karten hinzufügen" />
+                android:text="@string/button_text_add_card" />
 
         </LinearLayout>
 

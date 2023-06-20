@@ -42,13 +42,13 @@
             android:id="@+id/buttonLernen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lernen" />
+            android:text="@string/button_text_learn" />
 
         <Button
             android:id="@+id/buttonVorschau"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vorschau" />
+            android:text="@string/button_text_preview" />
 
 
 
