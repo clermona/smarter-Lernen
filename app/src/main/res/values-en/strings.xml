@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smarter Lernen</string>
+    <string name="page_title_stacks">Stacks</string>
+    <string name="page_title_management">Management</string>
+    <string name="fab_title_add_stack">Add Stack</string>
+    <string name="fab_title_add_card">Add Card</string>
+    <string name="button_text_learn">Learn</string>
+    <string name="button_text_preview">Preview</string>
+    <string name="button_text_add_card">Add Card</string>
+    <string name="button_text_create_stack">Create Stack</string>
+    <string name="label_create_stack">Create a Stack</string>
+</resources>

@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Smarter Lernen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="page_title_stacks">Stapel</string>
+    <string name="page_title_management">Verwaltung</string>
+    <string name="fab_title_add_stack">Stapel hinzufügen</string>
+    <string name="fab_title_add_card">Karte hinzufügen</string>
+    <string name="button_text_learn">Lernen</string>
+    <string name="button_text_preview">Vorschau</string>
+    <string name="button_text_add_card">Karte hinzufügen</string>
+    <string name="button_text_create_stack">Stapel erstellen</string>
+    <string name="label_stack_name" translatable="false">Name:</string>
+    <string name="label_create_stack">Stapel erstellen</string>
 </resources>

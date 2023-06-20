@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StackDetailActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewNeu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Neu: 20"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textViewWiederholen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wiederholen: 0"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonLernen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_text_learn" />
+
+        <Button
+            android:id="@+id/buttonVorschau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_text_preview" />
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/selectedStackTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Stack: Your Selected Stack"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
