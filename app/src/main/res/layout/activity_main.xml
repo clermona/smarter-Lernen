@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="@+id/fabAdd" />
 
     <TextView
-        android:id="@+id/add_card_action_text"
+        android:id="@+id/txtAddCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="@+id/fabAddCard" />
 
     <TextView
-        android:id="@+id/add_stack_action_text"
+        android:id="@+id/txtAddStack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

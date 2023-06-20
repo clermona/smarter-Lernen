@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         val fabAdd = binding.fabAdd
         val fabAddCard = binding.fabAddCard
         val fabAddStack = binding.fabAddStack
-        val txtFabCard = binding.addCardActionText
-        val txtFabStack = binding.addStackActionText
+        val txtFabCard = binding.txtAddCard
+        val txtFabStack = binding.txtAddStack
 
         var isAllFabsVisible = false
 
