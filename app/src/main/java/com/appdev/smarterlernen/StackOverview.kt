@@ -21,12 +21,10 @@ class StackOverview : Fragment() {
     lateinit var database: AppDatabase
     lateinit var stackDao: StackDao
     lateinit var items: List<Stack>
-    lateinit var adapter: StackAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_stack_overview, container, false)
         recyclerView = view.findViewById(R.id.listRecyclerView)
-        recyclerView.adapter = adapter
 
         database = AppDatabase.getInstance(requireContext())
         stackDao = database.stackDao()
@@ -38,7 +36,7 @@ class StackOverview : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        updateRecyclerView()
+        setupRecyclerView()
     }
 
     private fun retrieveData() {
@@ -53,17 +51,12 @@ class StackOverview : Fragment() {
         retrieveData()
 
         if(items.isNotEmpty()) {
-            adapter = StackAdapter(items) { item ->
-                // Handle the click event for the list item
+            val adapter = StackAdapter(items) { item ->
                 onStackItemClick(item)
             }
+            recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
-    }
-
-    private fun updateRecyclerView() {
-        retrieveData()
-        adapter.notifyDataSetChanged()
     }
 
     private fun onStackItemClick(item: String) {
