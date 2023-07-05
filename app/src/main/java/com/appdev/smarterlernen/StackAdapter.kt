@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.appdev.smarterlernen.R
 import com.appdev.smarterlernen.database.entities.Stack
 
-class StackAdapter(private val items: List<Stack>, private val onItemClick: (String) -> Unit) : RecyclerView.Adapter<StackAdapter.StackViewHolder>() {
+class StackAdapter(private val items: List<Stack>, private val onItemClick: (Stack) -> Unit) : RecyclerView.Adapter<StackAdapter.StackViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StackViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list, parent, false)
@@ -17,13 +17,11 @@ class StackAdapter(private val items: List<Stack>, private val onItemClick: (Str
     }
 
     override fun onBindViewHolder(holder: StackViewHolder, position: Int) {
-        val item = items[position].title
-        holder.itemTitleTextView.text = item
+        val item = items[position]
+        holder.itemTitleTextView.text = item.title
 
         holder.itemView.setOnClickListener {
-            if (item != null) {
-                onItemClick(item)
-            }
+            onItemClick(item)
         }
     }
 
@@ -35,3 +33,4 @@ class StackAdapter(private val items: List<Stack>, private val onItemClick: (Str
         val itemTitleTextView: TextView = itemView.findViewById(R.id.itemTitleTextView)
     }
 }
+
