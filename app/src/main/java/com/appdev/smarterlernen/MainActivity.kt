@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         var isAllFabsVisible = false
 
         val adapter = PagerAdapter(supportFragmentManager)
-        adapter.addFragment(StackOverview(), resources.getString(R.string.page_title_stacks))
+        adapter.addFragment(StackOverviewFragment(), resources.getString(R.string.page_title_stacks))
         adapter.addFragment(CardManagement(), resources.getString(R.string.page_title_management))
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)

@@ -15,7 +15,7 @@ import com.appdev.smarterlernen.database.interfaces.StackDao
 import kotlinx.coroutines.*
 
 
-class StackOverview : Fragment() {
+class StackOverviewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     lateinit var database: AppDatabase
@@ -47,10 +47,11 @@ class StackOverview : Fragment() {
         }
     }
 
+
     private fun setupRecyclerView() {
         retrieveData()
 
-        if(items.isNotEmpty()) {
+        if (items.isNotEmpty()) {
             val adapter = StackAdapter(items) { item ->
                 onStackItemClick(item)
             }
@@ -59,13 +60,21 @@ class StackOverview : Fragment() {
         }
     }
 
-    private fun onStackItemClick(item: String) {
+    private fun onStackItemClick(selectedStack: Stack) {
         // Handle the click event for the stack item
-        Toast.makeText(requireContext(), "Clicked: $item", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Clicked: ${selectedStack.title}", Toast.LENGTH_SHORT).show()
 
-        // Open the stack detail activity
-        val intent = Intent(requireContext(), StackDetailActivity::class.java)
-        intent.putExtra("selectedStack", item)
-        startActivity(intent)
+        // Create an instance of the StackDetailFragment and pass the selectedStack as arguments
+        val stackDetailFragment = StackDetailFragment()
+        val bundle = Bundle()
+        bundle.putParcelable("selectedStack", selectedStack)
+        stackDetailFragment.arguments = bundle
+
+        // Replace the current fragment with the StackDetailFragment
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, stackDetailFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
