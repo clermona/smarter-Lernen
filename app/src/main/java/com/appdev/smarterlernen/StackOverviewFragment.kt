@@ -61,8 +61,6 @@ class StackOverviewFragment : Fragment() {
     }
 
     private fun onStackItemClick(selectedStack: Stack) {
-        // Handle the click event for the stack item
-        Toast.makeText(requireContext(), "Clicked: ${selectedStack.title}", Toast.LENGTH_SHORT).show()
 
         // Create an instance of the StackDetailFragment and pass the selectedStack as arguments
         val stackDetailFragment = StackDetailFragment()
