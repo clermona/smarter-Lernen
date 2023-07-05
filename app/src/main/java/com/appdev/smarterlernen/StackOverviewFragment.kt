@@ -73,7 +73,7 @@ class StackOverviewFragment : Fragment() {
         // Replace the current fragment with the StackDetailFragment
         val fragmentManager = requireActivity().supportFragmentManager
         fragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, stackDetailFragment)
+            .replace(R.id.fragmentContainerView, stackDetailFragment)
             .addToBackStack(null)
             .commit()
     }
