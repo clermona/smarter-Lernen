@@ -6,14 +6,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.appdev.smarterlernen.database.AppDatabase
+import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     lateinit var binding: ActivityMainBinding
+
+    lateinit var database: AppDatabase
+    lateinit var stackDao: StackDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +28,27 @@ class MainActivity : AppCompatActivity() {
         //initial binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        // TO BE DELETED
+        database = AppDatabase.getInstance(this)
+        stackDao = database.stackDao()
+
+        val list = listOf(Stack("AppDev"), Stack("SecLab"))
+
+        for(test in list) {
+            runBlocking {
+                launch(Dispatchers.Default) {
+                    if(test.title?.let { stackDao.getByTitle(it) } != null) {
+                        stackDao.update(test)
+                    } else {
+                        stackDao.insert(test)
+                    }
+                }
+            }
+        }
+        // TO BE DELETED
+
 
         tabLayout=binding.tabLayout
         viewPager=binding.viewPager

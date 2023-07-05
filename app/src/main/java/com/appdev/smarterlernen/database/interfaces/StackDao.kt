@@ -12,6 +12,9 @@ interface StackDao {
     @Query("SELECT * from stack where id = :id LIMIT 1")
     fun getById(id: Int): Stack
 
+    @Query("SELECT * from stack where title = :title LIMIT 1")
+    fun getByTitle(title: String): Stack
+
     @Update
     fun update(stack: Stack)
 
