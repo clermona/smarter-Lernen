@@ -7,8 +7,7 @@ class LearnActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn)
-    }
-    private fun onLearnButtonClick() {
+
         val cardFrontFragment = CardFrontFragment()
         val cardBackFragment = CardBackFragment()
 
@@ -17,5 +16,4 @@ class LearnActivity : AppCompatActivity() {
             .replace(R.id.cardBackContainer, cardBackFragment)
             .commit()
     }
-
 }
