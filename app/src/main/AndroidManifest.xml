@@ -18,11 +18,12 @@
             android:name=".AddStackActivity"
             android:exported="false" />
         <activity
-            android:name=".StackDetailActivity"
+            android:name=".LearnActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
