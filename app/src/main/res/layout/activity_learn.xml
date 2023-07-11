@@ -5,17 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LearnActivity">
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/cardFrontContainer"
-        android:name="com.appdev.smarterlernen.CardFrontFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/cardBackContainer"
-        android:name="com.appdev.smarterlernen.CardBackFragment"
+        android:id="@+id/cardFragmentContainer"
+        android:name="com.appdev.smarterlernen.CardFrontFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
