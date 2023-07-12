@@ -6,5 +6,9 @@
     <color name="brown_100">#D3CCC1</color>
     <color name="brown_600">#5D4f32</color>
     <color name="black">#FF000000</color>
-    <color name="white">#C8FFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="pink">#cc338b</color>
+    <color name="red">#a12312</color>
+    <color name="green">#459b37 </color>
+    <color name="grey">#545454</color>
 </resources>

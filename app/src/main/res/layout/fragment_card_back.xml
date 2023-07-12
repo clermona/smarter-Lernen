@@ -44,17 +44,46 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/buttonShowBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Leicht" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-            <Button
-                android:id="@+id/buttonShowBack2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mittel" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonShowBack"
+                    android:layout_width="123dp"
+                     android:layout_height="match_parent"
+
+                    app:backgroundTint="@color/green"
+                    android:background="@drawable/borderbutton"
+                    android:drawableTint="@color/green"
+                    android:text="Leicht" />
+
+                <Button
+                    android:id="@+id/buttonShowBack3"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cornerRadius="0dp"
+                    android:backgroundTint="@color/grey"
+                    app:backgroundTint="@color/grey"
+                    android:background="@drawable/borderbutton"
+                    android:drawableTint="@color/green"
+                    android:text="Mitte" />
+
+                <Button
+                    android:id="@+id/buttonShowBack2"
+                    android:layout_width="130dp"
+                    app:cornerRadius="0dp"
+                    android:backgroundTint="@color/red"
+                    app:backgroundTint="@color/red"
+                    android:background="@drawable/borderbutton"
+                    android:drawableTint="@color/green"
+                    android:layout_height="wrap_content"
+
+                    android:text="Schwer" />
+            </LinearLayout>
 
         </LinearLayout>
 
