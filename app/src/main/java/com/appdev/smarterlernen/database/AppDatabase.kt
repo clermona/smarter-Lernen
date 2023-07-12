@@ -9,7 +9,7 @@ import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 
-@Database(entities = [Card::class, Stack::class], version = 1)
+@Database(entities = [Card::class, Stack::class], version = 3)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun cardDao(): CardDao
     abstract fun stackDao(): StackDao

@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.appdev.smarterlernen.database.AppDatabase
+import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
+import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var database: AppDatabase
     lateinit var stackDao: StackDao
+    lateinit var cardDao: CardDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         // TO BE DELETED
         database = AppDatabase.getInstance(this)
         stackDao = database.stackDao()
+        cardDao = database.cardDao()
 
         val list = listOf(Stack("AppDev"), Stack("SecLab"))
 
@@ -41,12 +45,17 @@ class MainActivity : AppCompatActivity() {
                 launch(Dispatchers.Default) {
                     if(test.title?.let { stackDao.getByTitle(it) } != null) {
                         stackDao.update(test)
+
+
                     } else {
                         stackDao.insert(test)
                     }
+
                 }
             }
         }
+
+
         // TO BE DELETED
 
 
