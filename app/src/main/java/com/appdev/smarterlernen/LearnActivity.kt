@@ -9,11 +9,11 @@ class LearnActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn)
 
-        val cardFrontFragment = CardFrontFragment()
+        val cardsFrontFragment = LearnCardsOverview()
         //val cardBackFragment = CardBackFragment()
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.cardFragmentContainer, cardFrontFragment)
+            .replace(R.id.cardFragmentContainer, cardsFrontFragment)
             //.replace(R.id.cardBackContainer, cardBackFragment)
             .commit()
     }

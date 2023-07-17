@@ -54,7 +54,7 @@
                     android:id="@+id/buttonLeicht"
                     android:onClick="onbuttonLeichClick"
                     android:layout_width="123dp"
-                     android:layout_height="match_parent"
+                    android:layout_height="match_parent"
 
                     app:backgroundTint="@color/green"
                     android:background="@drawable/borderbutton"

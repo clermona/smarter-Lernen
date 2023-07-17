@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var database: AppDatabase
     lateinit var stackDao: StackDao
     lateinit var cardDao: CardDao
+    lateinit var stacks: List<Stack>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         stackDao = database.stackDao()
         cardDao = database.cardDao()
 
-        val list = listOf(Stack("AppDev"), Stack("SecLab"))
+        val list = listOf(Stack("Example"))
 
         for(test in list) {
             runBlocking {
@@ -54,9 +55,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-
-        // TO BE DELETED
 
 
         tabLayout=binding.tabLayout
