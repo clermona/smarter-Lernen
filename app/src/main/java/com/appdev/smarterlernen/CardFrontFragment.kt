@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 
 class CardFrontFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
 
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,7 +21,14 @@ class CardFrontFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_card_front, container, false)
         val button = view.findViewById<Button>(R.id.buttonShowBack)
+        val stackTitel = view.findViewById<TextView>(R.id.textView2)
         val backSide = CardBackFragment()
+        val title = requireActivity().intent.getStringExtra("stackTitle")
+        val stackId = requireActivity().intent.getStringExtra("stackId")
+
+
+        stackTitel.text= title;
+
 
         button.setOnClickListener {
             val fragmentManager = requireActivity().supportFragmentManager

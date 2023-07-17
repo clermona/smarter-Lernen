@@ -70,7 +70,7 @@ class AddCardActivity : AppCompatActivity()  {
             if(front != null && back != null && stackId != 0) {
                 runBlocking {
                     launch(Dispatchers.Default) {
-                        cardDao.insert(Card("Card", stackId, front, back))
+                        cardDao.insert(Card(stackId, front, back))
                     }
                 }
             }
@@ -78,7 +78,7 @@ class AddCardActivity : AppCompatActivity()  {
     }
 }
 
-private class SpinnerStackAdapter(context: Context, objects: List<Stack>) : ArrayAdapter<Stack>(context, 0, objects) {
+class SpinnerStackAdapter(context: Context, objects: List<Stack>) : ArrayAdapter<Stack>(context, 0, objects) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)
