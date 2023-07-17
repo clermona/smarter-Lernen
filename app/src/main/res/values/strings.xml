@@ -12,4 +12,5 @@
     <string name="button_text_create_stack">Stapel erstellen</string>
     <string name="label_stack_name" translatable="false">Name:</string>
     <string name="label_create_stack">Stapel erstellen</string>
+    <string name="label_card_preview">Kartenvorschau</string>
 </resources>

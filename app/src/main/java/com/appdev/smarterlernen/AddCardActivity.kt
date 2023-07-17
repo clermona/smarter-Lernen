@@ -64,13 +64,13 @@ class AddCardActivity : AppCompatActivity()  {
         }
 
         binding.aaCardButton.setOnClickListener {
-            val front = binding.frontText.text.toString()
-            val back = binding.hintereSeiteText.text.toString()
+            val front = binding.txtFront.text.toString()
+            val back = binding.txtBack.text.toString()
 
             if(front != null && back != null && stackId != 0) {
                 runBlocking {
                     launch(Dispatchers.Default) {
-                        cardDao.insert(Card("Card", stackId, front, back))
+                        cardDao.insert(Card(stackId, front, back))
                     }
                 }
             }
