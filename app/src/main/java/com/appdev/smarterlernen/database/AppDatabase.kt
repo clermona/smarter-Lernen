@@ -29,5 +29,7 @@ abstract class AppDatabase : RoomDatabase(){
                 AppDatabase::class.java, "smarter_lernen_db")
                 .fallbackToDestructiveMigration()
                 .build()
+
+
     }
 }

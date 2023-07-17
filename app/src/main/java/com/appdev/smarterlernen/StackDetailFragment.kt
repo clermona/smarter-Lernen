@@ -65,15 +65,8 @@ class StackDetailFragment : Fragment() {
     }
     private fun onLearnButtonClick() {
         val intent = Intent(requireContext(), LearnActivity::class.java)
-        database = AppDatabase.getInstance(requireContext())
-        cardDao = database.cardDao()
-        runBlocking {
-            launch(Dispatchers.Default) {
-                cardDao.insert(Card(stackId,"hi","hi"))
-                cardDao.insert(Card(stackId,"aks","asajk"))
 
-            }
-        }
+
         intent.putExtra("stackTitle", stackTitle.text.toString())
         intent.putExtra("stackId", stackId)
         startActivity(intent)

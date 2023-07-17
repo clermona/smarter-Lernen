@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Card
-import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import kotlinx.coroutines.Dispatchers
@@ -53,7 +52,7 @@ class LearnCardsOverview: Fragment() {
         retrieveData()
 
         if (items.isNotEmpty()) {
-            val adapter = CardAdapter(items) { item ->
+            val adapter = CardAdapter(items,requireContext()) { item ->
 
 
                     val fragmentManager = requireActivity().supportFragmentManager
