@@ -36,7 +36,7 @@ class CardAdapter(private val items: List<Card>, private val context: Context, p
 
         holder.cardId.text=item.id.toString()
         holder.tVContent.text=item.frontSide
-
+        holder.tvRating.text= if (item.rating.isNullOrEmpty()) "no rating" else item.rating
         holder.buttonShowBack.setOnClickListener {
             onItemClick(item)
         }
@@ -52,6 +52,7 @@ class CardAdapter(private val items: List<Card>, private val context: Context, p
         val tVTitle: TextView = itemView.findViewById(R.id.textView2)
         val cardId: TextView = itemView.findViewById(R.id.cardId)
         val tVContent: TextView = itemView.findViewById(R.id.tVContent)
+        val tvRating: TextView = itemView.findViewById(R.id.rating)
 
     }
 }

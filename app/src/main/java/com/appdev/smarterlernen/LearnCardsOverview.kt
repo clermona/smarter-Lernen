@@ -45,6 +45,7 @@ class LearnCardsOverview: Fragment() {
 
             }
         }
+        items.sortedBy { it.rating }
     }
 
 
@@ -53,13 +54,20 @@ class LearnCardsOverview: Fragment() {
 
         if (items.isNotEmpty()) {
             val adapter = CardAdapter(items,requireContext()) { item ->
+                val fragmentManager = requireActivity().supportFragmentManager
+                val newFragment = CardBackFragment()
+
+                val bundle = Bundle()
+                bundle.putSerializable("currentCard", item)
+                newFragment.arguments = bundle
 
 
-                    val fragmentManager = requireActivity().supportFragmentManager
-                    fragmentManager.beginTransaction()
-                        .replace(R.id.cardFragmentContainer, CardBackFragment())
-                        .addToBackStack(null)
-                        .commit()
+                fragmentManager.beginTransaction()
+                    .replace(R.id.cardFragmentContainer, newFragment)
+                    .addToBackStack(null)
+                    .commit()
+
+
                 }
 
             recyclerView.adapter = adapter
@@ -68,3 +76,5 @@ class LearnCardsOverview: Fragment() {
     }
 
 }
+
+
