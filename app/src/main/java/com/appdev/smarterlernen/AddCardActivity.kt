@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -38,11 +39,15 @@ class AddCardActivity : AppCompatActivity()  {
 
         binding = ActivityAddCardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        getSupportActionBar()?.setHomeButtonEnabled(true);
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         database = AppDatabase.getInstance(this)
         cardDao = database.cardDao()
         stackDao = database.stackDao()
+        val front = binding.frontText.text.toString()
+        val back = binding.hintereSeiteText.text.toString()
 
+        binding.aaCardButton.isEnabled=false
         runBlocking {
             launch(Dispatchers.Default) {
                 stacks = stackDao.getAll()
@@ -64,17 +69,32 @@ class AddCardActivity : AppCompatActivity()  {
         }
 
         binding.aaCardButton.setOnClickListener {
-            val front = binding.frontText.text.toString()
-            val back = binding.hintereSeiteText.text.toString()
 
-            if(front != null && back != null && stackId != 0) {
+
+
                 runBlocking {
                     launch(Dispatchers.Default) {
                         cardDao.insert(Card(stackId, front, back,0))
-                        Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+
                     }
                 }
+                Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+
+        }
+
+
+    if(front != null && back != null && stackId != 0) {
+
+    binding.aaCardButton.isEnabled=true
+    }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
             }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

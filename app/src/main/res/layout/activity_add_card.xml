@@ -36,7 +36,7 @@
                 android:id="@+id/frontText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Vordere Seite: " />
+                android:text="Frage: " />
 
             <LinearLayout
                 android:id="@+id/firstCard"
@@ -59,7 +59,7 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="Frage: " />
+                        android:text="" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -75,7 +75,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hintere Seite" />
+                android:text="Antwort:" />
 
             <LinearLayout
                 android:id="@+id/secondCard"
@@ -92,7 +92,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Antwort: " />
+                    android:text=" " />
 
             </LinearLayout>
 
@@ -107,8 +107,8 @@
         android:layout_below="@id/cardContainer"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="22dp"
         android:text="@string/button_text_add_card" />
 
 
