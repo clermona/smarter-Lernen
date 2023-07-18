@@ -70,7 +70,7 @@ class AddCardActivity : AppCompatActivity()  {
             if(front != null && back != null && stackId != 0) {
                 runBlocking {
                     launch(Dispatchers.Default) {
-                        cardDao.insert(Card(stackId, front, back))
+                        cardDao.insert(Card(stackId, front, back,0))
                     }
                 }
             }

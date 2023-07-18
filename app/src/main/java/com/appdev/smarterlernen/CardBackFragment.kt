@@ -15,6 +15,7 @@ import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityAddCardBinding
+import com.appdev.smarterlernen.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -40,7 +41,7 @@ class CardBackFragment : Fragment()   {
     lateinit var stackDao: StackDao
     lateinit var updateCard: Card
     lateinit var stacks: List<Stack>
-    var data:Int = 0
+
     var stackId: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,8 @@ class CardBackFragment : Fragment()   {
                 stacks = stackDao.getAll()
             }
         }
+
+
 
         cardDao = database.cardDao()
         val customAdapter = SpinnerStackAdapter(requireActivity(), stacks)
@@ -68,9 +71,6 @@ class CardBackFragment : Fragment()   {
             }
         }
 
-         
-
-
     }
 
     override fun onCreateView(
@@ -83,7 +83,6 @@ class CardBackFragment : Fragment()   {
         val buttonMittel = view.findViewById<Button>(R.id.buttonMittel)
         val buttonSchwer = view.findViewById<Button>(R.id.buttonSchwer)
         val cardId = view.findViewById<TextView>(R.id.cardId)
-        cardId.text=data.toString()
 
         val cardObject = arguments?.getSerializable("currentCard") as? Card
         val answer = view.findViewById<TextView>(R.id.textView3)
@@ -107,7 +106,7 @@ if (cardObject!=null) {
             launch(Dispatchers.Default) {
 
                 updateCard = cardDao.getById(cardObject.id)
-                updateCard.rating = "Leicht";
+                updateCard.rating = 1;
                 cardDao.update(updateCard)
             }
         }
@@ -120,7 +119,7 @@ if (cardObject!=null) {
             launch(Dispatchers.Default) {
 
                 updateCard = cardDao.getById(cardObject.id)
-                updateCard.rating = "Mittel";
+                updateCard.rating = 2;
                 cardDao.update(updateCard)
             }
         }
@@ -132,7 +131,7 @@ if (cardObject!=null) {
             launch(Dispatchers.Default) {
 
                 updateCard = cardDao.getById(cardObject.id)
-                updateCard.rating = "Schwer";
+                updateCard.rating = 3;
                 cardDao.update(updateCard)
             }
         }
@@ -141,7 +140,7 @@ if (cardObject!=null) {
     }
 }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_back, container, false)
+        return view
     }
 
     companion object {

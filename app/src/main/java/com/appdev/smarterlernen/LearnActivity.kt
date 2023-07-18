@@ -15,7 +15,7 @@ class LearnActivity : AppCompatActivity() {
         //val cardBackFragment = CardBackFragment()
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.cardFragmentContainer, cardsFrontFragment)
+            .replace(R.id.cardFragmentContainer, LearnCardsOverview())
             //.replace(R.id.cardBackContainer, cardBackFragment)
             .commit()
     }

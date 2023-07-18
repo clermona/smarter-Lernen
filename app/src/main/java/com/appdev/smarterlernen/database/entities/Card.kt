@@ -16,7 +16,7 @@ data class Card  (
 
     @ColumnInfo(name = "front_side") var frontSide: String? = "",
     @ColumnInfo(name = "back_side") var backSide: String? = "",
-    @ColumnInfo(name = "rating") var rating: String?="",
+    @ColumnInfo(name = "rating") var rating: Int,
     @ColumnInfo(name = "tag") var tag: String? = "",
     @ColumnInfo(name = "status") var status: String? = "",
     @ColumnInfo(name = "ghost_status") var ghostStatus: Boolean? = false,

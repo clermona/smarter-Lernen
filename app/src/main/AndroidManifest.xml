@@ -24,6 +24,9 @@
             android:name=".LearnActivity"
             android:exported="false" />
         <activity
+            android:name=".LearnCardsOverview"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
 

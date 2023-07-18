@@ -1,5 +1,6 @@
 package com.appdev.smarterlernen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,10 @@ class LearnCardsOverview: Fragment() {
     lateinit var stackDao: StackDao
     lateinit var cardDao: CardDao
     lateinit var items: List<Card>
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_learn_cards, container, false)
         recyclerView = view.findViewById(R.id.listRecyclerView2)
@@ -45,7 +49,7 @@ class LearnCardsOverview: Fragment() {
 
             }
         }
-        items.sortedBy { it.rating }
+
     }
 
 
@@ -53,6 +57,10 @@ class LearnCardsOverview: Fragment() {
         retrieveData()
 
         if (items.isNotEmpty()) {
+
+            items=items.sortedByDescending { it.rating }
+
+
             val adapter = CardAdapter(items,requireContext()) { item ->
                 val fragmentManager = requireActivity().supportFragmentManager
                 val newFragment = CardBackFragment()
@@ -68,10 +76,13 @@ class LearnCardsOverview: Fragment() {
                     .commit()
 
 
-                }
+            }
 
-            recyclerView.adapter = adapter
+            adapter.updateData(items)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = adapter
+
+
         }
     }
 
