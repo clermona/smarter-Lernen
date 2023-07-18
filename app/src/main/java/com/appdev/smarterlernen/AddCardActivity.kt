@@ -75,7 +75,7 @@ class AddCardActivity : AppCompatActivity()  {
     }
 }
 
-private class SpinnerStackAdapter(context: Context, objects: List<Stack>) : ArrayAdapter<Stack>(context, 0, objects) {
+class SpinnerStackAdapter(context: Context, objects: List<Stack>) : ArrayAdapter<Stack>(context, 0, objects) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)

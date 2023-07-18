@@ -1,20 +1,32 @@
 package com.appdev.smarterlernen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+
 
 class LearnActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn)
-
-        val cardFrontFragment = CardFrontFragment()
+        getSupportActionBar()?.setHomeButtonEnabled(true);
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        val cardsFrontFragment = LearnCardsOverview()
         //val cardBackFragment = CardBackFragment()
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.cardFragmentContainer, cardFrontFragment)
+            .replace(R.id.cardFragmentContainer, cardsFrontFragment)
             //.replace(R.id.cardBackContainer, cardBackFragment)
             .commit()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

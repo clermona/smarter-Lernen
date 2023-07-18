@@ -10,10 +10,12 @@ import androidx.room.PrimaryKey
     foreignKeys = [ForeignKey(entity = Stack::class, parentColumns = ["id"], childColumns = ["stack_id"])]
 )
 data class Card (
+
     @ColumnInfo(name = "stack_id") var stackId: Int,
 
     @ColumnInfo(name = "front_side") var frontSide: String? = "",
     @ColumnInfo(name = "back_side") var backSide: String? = "",
+    @ColumnInfo(name = "rating") var rating: String?="",
     @ColumnInfo(name = "tag") var tag: String? = "",
     @ColumnInfo(name = "status") var status: String? = "",
     @ColumnInfo(name = "ghost_status") var ghostStatus: Boolean? = false,
