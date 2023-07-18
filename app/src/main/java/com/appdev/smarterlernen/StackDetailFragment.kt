@@ -34,6 +34,7 @@ class StackDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             selectedStackTitle = it.getString("selectedStack") ?: "Select a stack"
 
@@ -48,20 +49,29 @@ class StackDetailFragment : Fragment() {
 
 
         }
+        database = AppDatabase.getInstance(requireActivity())
+        cardDao = database.cardDao()
+
+        runBlocking {
+            launch(Dispatchers.Default) {
+                allCards=cardDao.getAll()
+
+            }
+        }
         val stackNameTextView = view.findViewById<TextView>(R.id.selectedStackTextView)
 
         val selectedStack = arguments?.getParcelable<Stack>("selectedStack")
         stackNameTextView.text = selectedStack?.title
         stackId = selectedStack?.id?:0
-        database = AppDatabase.getInstance(requireActivity())
-        cardDao = database.cardDao()
         newCards=view.findViewById<Button>(R.id.textViewNeu)
         usedCards=view.findViewById<Button>(R.id.textViewWiederholen)
+
         buttonLearn = view.findViewById<Button>(R.id.buttonLernen)
         buttonLearn.setOnClickListener {
             // Start the new activity here
             onLearnButtonClick()
         }
+
         buttonLearn.isEnabled=false
         if(stackNameTextView.text != ""){
             buttonLearn.isEnabled=true
@@ -72,21 +82,16 @@ class StackDetailFragment : Fragment() {
         stackTitle= view.findViewById<TextView>(R.id.selectedStackTextView)
 
 
-        runBlocking {
-            launch(Dispatchers.Default) {
-                allCards=cardDao.getAll()
 
-            }
-        }
+        var sumNew =allCards.filter{it.rating == 0}.count()
+        var sumUsed =allCards.filter{it.rating != 0}.count()
 
-        newCards.text= "Neu: "+allCards.filter{it.rating == 0}.count().toString()
-        usedCards.text= "Wiederholen: "+allCards.filter{it.rating > 0}.count().toString()
+        newCards.text= "Neu: "+sumNew.toString()
+        usedCards.text= "Wiederholen: "+sumUsed.toString()
         return view
     }
     private fun onLearnButtonClick() {
         val intent = Intent(requireContext(), LearnActivity::class.java)
-
-
         intent.putExtra("stackTitle", stackTitle.text.toString())
         intent.putExtra("stackId", stackId)
         startActivity(intent)
