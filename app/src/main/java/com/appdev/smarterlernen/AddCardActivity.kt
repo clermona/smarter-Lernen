@@ -71,6 +71,7 @@ class AddCardActivity : AppCompatActivity()  {
                 runBlocking {
                     launch(Dispatchers.Default) {
                         cardDao.insert(Card(stackId, front, back,0))
+                        Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
