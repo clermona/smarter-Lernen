@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.StackDao
-import com.appdev.smarterlernen.databinding.ActivityAddCardBinding
 import com.appdev.smarterlernen.databinding.ActivityAddStackBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

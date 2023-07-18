@@ -7,7 +7,6 @@ import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
-import com.appdev.smarterlernen.databinding.ActivityAddStackBinding
 import com.appdev.smarterlernen.databinding.ActivityCardPreviewBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,21 +47,15 @@ class CardPreviewActivity : AppCompatActivity() {
 
         binding.stackName.text = stack.title
 
-
         if(cardList.isNotEmpty()) {
-            binding.txtFront.text = cardList[tabIndex].frontSide
-            binding.txtBack.text = cardList[tabIndex].backSide
+            updateCard(false)
 
             binding.pbCardProgress.max = cardList.size
-
             if(tabIndex == 0) {
                 binding.pbCardProgress.progress = 1
             } else {
                 binding.pbCardProgress.progress = tabIndex - 1
             }
-
-
-            binding.cardNumber.text = "Karte ${tabIndex+1} von ${cardList.size}"
 
             binding.btnNext.setOnClickListener { updateCard(true) }
 
@@ -70,14 +63,16 @@ class CardPreviewActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateCard(up: Boolean) {
-        if(up) {
-            if(tabIndex < cardList.size - 1) {
-                tabIndex++
-            }
-        } else {
-            if(tabIndex > 0) {
-                tabIndex--
+    private fun updateCard(changeIndex: Boolean = true, up: Boolean = true) {
+        if(changeIndex) {
+            if (up) {
+                if (tabIndex < cardList.size - 1) {
+                    tabIndex++
+                }
+            } else {
+                if (tabIndex > 0) {
+                    tabIndex--
+                }
             }
         }
 
@@ -86,7 +81,8 @@ class CardPreviewActivity : AppCompatActivity() {
 
         binding.pbCardProgress.progress = tabIndex + 1
 
-        binding.cardNumber.text = "Karte ${tabIndex+1} von ${cardList.size}"
+        val cardNumberString = getString(R.string.label_card_number, tabIndex + 1, cardList.size)
+        binding.cardNumber.text = cardNumberString
     }
 
 }

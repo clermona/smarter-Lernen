@@ -11,4 +11,7 @@
     <string name="button_text_create_stack">Create Stack</string>
     <string name="label_create_stack">Create a Stack</string>
     <string name="label_card_preview">Card Preview</string>
+    <string name="label_front_side">Front Side</string>
+    <string name="label_back_side">Back Side</string>
+    <string name="label_card_number">Card %d of %d</string>
 </resources>

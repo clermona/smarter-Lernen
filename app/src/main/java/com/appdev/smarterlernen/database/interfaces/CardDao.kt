@@ -15,6 +15,9 @@ interface CardDao {
     @Query("SELECT * FROM card WHERE id = :id")
     fun getById(id: Int): Card
 
+    @Query("SELECT count(*) from card WHERE stack_id = :id")
+    fun getCountByStackId(id: Int): Int
+
     @Update
     fun update(card: Card)
 
