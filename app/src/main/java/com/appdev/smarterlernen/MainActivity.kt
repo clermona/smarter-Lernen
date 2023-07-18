@@ -15,6 +15,7 @@ import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
+import com.gtappdevelopers.kotlingfgproject.CardManagement
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
