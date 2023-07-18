@@ -25,10 +25,13 @@ class StackDetailFragment : Fragment() {
     private lateinit var selectedStackTitle: String
 
     lateinit var buttonLearn: Button
+    private lateinit var newCards: TextView
+    private lateinit var usedCards: TextView
     lateinit var stackTitle: TextView
      var stackId: Int = 0
     lateinit var database: AppDatabase
     lateinit var cardDao: CardDao
+    lateinit var allCards: List<Card>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +50,10 @@ class StackDetailFragment : Fragment() {
         val selectedStack = arguments?.getParcelable<Stack>("selectedStack")
         stackNameTextView.text = selectedStack?.title
         stackId = selectedStack?.id?:0
-
-
+        database = AppDatabase.getInstance(requireActivity())
+        cardDao = database.cardDao()
+        newCards=view.findViewById<Button>(R.id.textViewNeu)
+        usedCards=view.findViewById<Button>(R.id.textViewWiederholen)
         buttonLearn = view.findViewById<Button>(R.id.buttonLernen)
         buttonLearn.setOnClickListener {
             // Start the new activity here
@@ -59,8 +64,15 @@ class StackDetailFragment : Fragment() {
         stackTitle= view.findViewById<TextView>(R.id.selectedStackTextView)
 
 
+        runBlocking {
+            launch(Dispatchers.Default) {
+                allCards=cardDao.getAll()
 
+            }
+        }
 
+        newCards.text= "Neu: "+allCards.filter{it.rating == 0}.count().toString()
+        usedCards.text= "Wiederholen: "+allCards.filter{it.rating > 0}.count().toString()
         return view
     }
     private fun onLearnButtonClick() {

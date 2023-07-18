@@ -4,6 +4,7 @@ import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -23,6 +24,7 @@ import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
+
     private lateinit var viewPager: ViewPager
     lateinit var binding: ActivityMainBinding
 
@@ -68,6 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         tabLayout = binding.tabLayout
         viewPager = binding.viewPager
+
 
         val fabAdd = binding.fabAdd
         val fabAddCard = binding.fabAddCard
