@@ -1,10 +1,7 @@
 package com.appdev.smarterlernen
 
 import android.content.Intent
-import android.icu.text.CaseMap.Title
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,18 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.appdev.smarterlernen.database.AppDatabase
-import com.appdev.smarterlernen.database.entities.Card
-import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
-import com.appdev.smarterlernen.database.interfaces.StackDao
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-
-import com.appdev.smarterlernen.database.interfaces.CardDao
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
@@ -49,7 +37,7 @@ class StackDetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_stack_detail, container, false)
 
-        val stackNameTextView = view.findViewById<TextView>(R.id.selectedStackTextView)
+        val stackNameTextView = view.findViewById<TextView>(R.id.stackName)
         val selectedStack = arguments?.getParcelable<Stack>("selectedStack")
         stackNameTextView.text = selectedStack?.title
         stackId = selectedStack?.id?:0
@@ -82,7 +70,7 @@ class StackDetailFragment : Fragment() {
         }
 
 
-        stackTitle= view.findViewById<TextView>(R.id.selectedStackTextView)
+        stackTitle= view.findViewById<TextView>(R.id.stackName)
 
 
 
