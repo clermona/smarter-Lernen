@@ -44,50 +44,56 @@ class AddCardActivity : AppCompatActivity()  {
         database = AppDatabase.getInstance(this)
         cardDao = database.cardDao()
         stackDao = database.stackDao()
-        val front = binding.frontText.text.toString()
+        val front = binding.editTextText.text.toString()
         val back = binding.hintereSeiteText.text.toString()
-
-        binding.aaCardButton.isEnabled=false
-        runBlocking {
-            launch(Dispatchers.Default) {
-                stacks = stackDao.getAll()
-            }
-        }
-
-        val customAdapter = SpinnerStackAdapter(this, stacks)
-        binding.spinner.adapter = customAdapter
-
-
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                stackId = customAdapter.getItem(position)?.id!!
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Handle the case when nothing is selected
-            }
-        }
 
         binding.aaCardButton.setOnClickListener {
 
 
+            runBlocking {
+                launch(Dispatchers.Default) {
+                    cardDao.insert(Card(stackId, front, back, 0))
 
-                runBlocking {
-                    launch(Dispatchers.Default) {
-                        cardDao.insert(Card(stackId, front, back,0))
-
-                    }
                 }
-                Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+            }
+            Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+        }
+        binding.aaCardButton.isEnabled=false
+
+            if (front != "" && back != "" && stackId != 0) {
+
+                binding.aaCardButton.isEnabled = true
+            }
+
+            runBlocking {
+                launch(Dispatchers.Default) {
+                    stacks = stackDao.getAll()
+                }
+            }
+
+            val customAdapter = SpinnerStackAdapter(this, stacks)
+            binding.spinner.adapter = customAdapter
+
+
+            binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    stackId = customAdapter.getItem(position)?.id!!
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Handle the case when nothing is selected
+                }
+            }
+
 
         }
 
 
-    if(front != null && back != null && stackId != 0) {
-
-    binding.aaCardButton.isEnabled=true
-    }
-    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
