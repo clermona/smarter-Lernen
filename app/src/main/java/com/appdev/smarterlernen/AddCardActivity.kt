@@ -2,6 +2,8 @@ package com.appdev.smarterlernen
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -46,7 +48,6 @@ class AddCardActivity : AppCompatActivity()  {
         stackDao = database.stackDao()
         val front = binding.editTextText.text.toString()
         val back = binding.hintereSeiteText.text.toString()
-
         binding.aaCardButton.setOnClickListener {
 
 
@@ -58,12 +59,10 @@ class AddCardActivity : AppCompatActivity()  {
             }
             Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
         }
-        binding.aaCardButton.isEnabled=false
 
-            if (front != "" && back != "" && stackId != 0) {
 
-                binding.aaCardButton.isEnabled = true
-            }
+
+
 
             runBlocking {
                 launch(Dispatchers.Default) {
@@ -91,7 +90,7 @@ class AddCardActivity : AppCompatActivity()  {
             }
 
 
-        }
+    }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

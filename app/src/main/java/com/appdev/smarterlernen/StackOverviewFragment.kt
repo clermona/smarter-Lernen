@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.appdev.smarterlernen.database.AppDatabase
+import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
+import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import kotlinx.coroutines.*
 
@@ -20,6 +22,7 @@ class StackOverviewFragment : Fragment() {
 
     lateinit var database: AppDatabase
     lateinit var stackDao: StackDao
+    lateinit var cardDao: CardDao
     lateinit var items: List<Stack>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,7 +31,7 @@ class StackOverviewFragment : Fragment() {
 
         database = AppDatabase.getInstance(requireContext())
         stackDao = database.stackDao()
-
+        cardDao = database.cardDao()
         setupRecyclerView()
 
         return view
@@ -43,6 +46,7 @@ class StackOverviewFragment : Fragment() {
         runBlocking {
             launch(Dispatchers.Default) {
                 items = stackDao.getAll()
+
             }
         }
     }
@@ -52,7 +56,7 @@ class StackOverviewFragment : Fragment() {
         retrieveData()
 
         if (items.isNotEmpty()) {
-            val adapter = StackAdapter(items) { item ->
+            val adapter = StackAdapter(items,requireContext()) { item ->
                 onStackItemClick(item)
             }
             recyclerView.adapter = adapter
@@ -67,6 +71,7 @@ class StackOverviewFragment : Fragment() {
         val bundle = Bundle()
         bundle.putParcelable("selectedStack", selectedStack)
         stackDetailFragment.arguments = bundle
+
 
         // Replace the current fragment with the StackDetailFragment
         val fragmentManager = requireActivity().supportFragmentManager
