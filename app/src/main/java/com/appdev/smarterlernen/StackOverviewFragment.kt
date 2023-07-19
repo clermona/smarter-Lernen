@@ -65,19 +65,19 @@ class StackOverviewFragment : Fragment() {
     }
 
     private fun onStackItemClick(selectedStack: Stack) {
+           // Create an instance of the StackDetailFragment and pass the selectedStack as arguments
+            val stackDetailFragment = StackDetailFragment()
+            val bundle = Bundle()
+            bundle.putParcelable("selectedStack", selectedStack)
+            stackDetailFragment.arguments = bundle
 
-        // Create an instance of the StackDetailFragment and pass the selectedStack as arguments
-        val stackDetailFragment = StackDetailFragment()
-        val bundle = Bundle()
-        bundle.putParcelable("selectedStack", selectedStack)
-        stackDetailFragment.arguments = bundle
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, stackDetailFragment)
+                .addToBackStack(null)
+                .commit()
 
 
-        // Replace the current fragment with the StackDetailFragment
-        val fragmentManager = requireActivity().supportFragmentManager
-        fragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerView, stackDetailFragment)
-            .addToBackStack(null)
-            .commit()
     }
+
 }

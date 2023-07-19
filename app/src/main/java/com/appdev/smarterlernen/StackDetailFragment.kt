@@ -34,44 +34,39 @@ class StackDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             selectedStackTitle = it.getString("selectedStack") ?: "Select a stack"
 
 
         }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_stack_detail, container, false)
+        newCards=view.findViewById<TextView>(R.id.textViewNeu)
+        usedCards=view.findViewById<TextView>(R.id.textViewWiederholen)
+
         arguments?.let {
             selectedStackTitle = it.getString("selectedStack") ?: "Select a stack"
+            newCards.text=""
+            usedCards.text=""
 
-
-        }
-        database = AppDatabase.getInstance(requireActivity())
-        cardDao = database.cardDao()
-
-        runBlocking {
-            launch(Dispatchers.Default) {
-                allCards=cardDao.getAll()
-
-            }
         }
         val stackNameTextView = view.findViewById<TextView>(R.id.selectedStackTextView)
 
         val selectedStack = arguments?.getParcelable<Stack>("selectedStack")
         stackNameTextView.text = selectedStack?.title
         stackId = selectedStack?.id?:0
-        newCards=view.findViewById<Button>(R.id.textViewNeu)
-        usedCards=view.findViewById<Button>(R.id.textViewWiederholen)
-
+        database = AppDatabase.getInstance(requireActivity())
+        cardDao = database.cardDao()
         buttonLearn = view.findViewById<Button>(R.id.buttonLernen)
         buttonLearn.setOnClickListener {
             // Start the new activity here
             onLearnButtonClick()
         }
-
+        newCards.text=""
+        usedCards.text=""
         buttonLearn.isEnabled=false
         if(stackNameTextView.text != ""){
             buttonLearn.isEnabled=true
@@ -82,13 +77,22 @@ class StackDetailFragment : Fragment() {
         stackTitle= view.findViewById<TextView>(R.id.selectedStackTextView)
 
 
+        updateCardCounts()
 
-        var sumNew =allCards.filter{it.rating == 0}.count()
-        var sumUsed =allCards.filter{it.rating != 0}.count()
-
-        newCards.text= "Neu: "+sumNew.toString()
-        usedCards.text= "Wiederholen: "+sumUsed.toString()
         return view
+    }
+    private fun updateCardCounts() {
+        runBlocking {
+            launch(Dispatchers.Default) {
+                allCards = cardDao.getAll()
+                val sumNew = allCards.filter { it.rating == 0 }.count().toString()
+                val sumUsed = allCards.filter { it.rating > 0 }.count().toString()
+
+                // Update the TextViews with the card counts
+                newCards.text = "Neu: $sumNew"
+                usedCards.text = "Wiederholen: $sumUsed"
+            }
+        }
     }
     private fun onLearnButtonClick() {
         val intent = Intent(requireContext(), LearnActivity::class.java)
