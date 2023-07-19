@@ -45,6 +45,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="200dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,30 +124,31 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/btnNext"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="92dp"
-        android:background="@color/blue_600"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnPrevious"
-        app:srcCompat="@drawable/baseline_chevron_right_24" />
-
-    <ImageButton
+    <Button
         android:id="@+id/btnPrevious"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="92dp"
-        android:background="@color/blue_600"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:text="@string/button_text_previous"
+        android:textAlignment="center"
+        app:icon="@drawable/baseline_chevron_left_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnNext"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/baseline_chevron_left_24" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:text="@string/button_text_next"
+        android:textAlignment="center"
+        app:icon="@drawable/baseline_chevron_right_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnPrevious" />
 
     <TextView
         android:id="@+id/textView5"
@@ -174,6 +176,5 @@
         app:layout_constraintBottom_toTopOf="@+id/cardContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,4 +16,6 @@
     <string name="label_front_side">Vordere Seite</string>
     <string name="label_back_side">Hintere Seite</string>
     <string name="label_card_number">Karte %d von %d</string>
+    <string name="button_text_previous">Letzte</string>
+    <string name="button_text_next">Nächste</string>
 </resources>

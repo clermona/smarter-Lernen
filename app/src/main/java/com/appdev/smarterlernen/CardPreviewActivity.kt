@@ -59,7 +59,7 @@ class CardPreviewActivity : AppCompatActivity() {
 
             binding.btnNext.setOnClickListener { updateCard(true) }
 
-            binding.btnPrevious.setOnClickListener { updateCard(false) }
+            binding.btnPrevious.setOnClickListener { updateCard(true, up = false) }
         }
     }
 
@@ -75,6 +75,9 @@ class CardPreviewActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.btnPrevious.isEnabled = tabIndex != 0
+        binding.btnNext.isEnabled = (tabIndex < cardList.size - 1)
 
         binding.txtFront.text = cardList[tabIndex].frontSide
         binding.txtBack.text = cardList[tabIndex].backSide

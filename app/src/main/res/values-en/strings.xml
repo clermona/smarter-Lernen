@@ -14,4 +14,6 @@
     <string name="label_front_side">Front Side</string>
     <string name="label_back_side">Back Side</string>
     <string name="label_card_number">Card %d of %d</string>
+    <string name="button_text_previous">Prev</string>
+    <string name="button_text_next">Next</string>
 </resources>
