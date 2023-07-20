@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:background="#FFFFFF"
-        android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
@@ -18,8 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginEnd="16dp"
+        app:backgroundTint="#318CE7"
         android:layout_marginBottom="16dp"
-        android:src="@android:drawable/ic_input_add"
+        app:srcCompat="@drawable/plus"
+
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -31,6 +28,7 @@
         android:layout_marginBottom="24dp"
         android:src="?attr/actionModeSelectAllDrawable"
         android:visibility="invisible"
+        app:backgroundTint="#318CE7"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAdd"
         app:layout_constraintEnd_toEndOf="@+id/fabAdd"
@@ -54,6 +52,7 @@
         android:layout_marginBottom="24dp"
         android:src="?attr/actionModePasteDrawable"
         android:visibility="invisible"
+        app:backgroundTint="#318CE7"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAddCard"
         app:layout_constraintEnd_toEndOf="@+id/fabAddCard"
@@ -85,6 +84,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF" />
         </androidx.viewpager.widget.ViewPager>
     </LinearLayout>
 
