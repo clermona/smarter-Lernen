@@ -15,6 +15,9 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value="MainActivity" />
         <activity
+            android:name=".CardPreviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddCardActivity"
             android:exported="false" />
         <activity
@@ -29,7 +32,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,10 +1,7 @@
 package com.appdev.smarterlernen
 
 import android.content.Intent
-import android.icu.text.CaseMap.Title
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,23 +9,25 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.appdev.smarterlernen.database.AppDatabase
-import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
-import com.appdev.smarterlernen.database.interfaces.StackDao
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class StackDetailFragment : Fragment() {
 
     private lateinit var selectedStackTitle: String
+
     lateinit var buttonLearn: Button
     private lateinit var newCards: TextView
     private lateinit var usedCards: TextView
     lateinit var stackTitle: TextView
      var stackId: Int = 0
      lateinit var database: AppDatabase
+
+    lateinit var buttonPreview: Button
+
     lateinit var cardDao: CardDao
     lateinit var allCards: List<Card>
 
@@ -52,15 +51,30 @@ class StackDetailFragment : Fragment() {
             newCards.text=""
             usedCards.text=""
 
-        }
-        val stackNameTextView = view.findViewById<TextView>(R.id.selectedStackTextView)
 
+        val stackNameTextView = view.findViewById<TextView>(R.id.stackName)
         val selectedStack = arguments?.getParcelable<Stack>("selectedStack")
         stackNameTextView.text = selectedStack?.title
         stackId = selectedStack?.id?:0
-        database = AppDatabase.getInstance(requireActivity())
+
+
+        if (selectedStack != null) {
+            stackId = selectedStack.id
+        }
+
+        database = AppDatabase.getInstance(requireContext())
         cardDao = database.cardDao()
+
         buttonLearn = view.findViewById<Button>(R.id.buttonLernen)
+        buttonPreview = view.findViewById(R.id.buttonVorschau)
+
+        runBlocking {
+            val cardCount = withContext(Dispatchers.IO) {
+                cardDao.getCountByStackId(stackId)
+            }
+            buttonPreview.isEnabled = cardCount != 0
+        }
+
         buttonLearn.setOnClickListener {
             // Start the new activity here
             onLearnButtonClick()
@@ -72,9 +86,15 @@ class StackDetailFragment : Fragment() {
             buttonLearn.isEnabled=true
         }
 
+        buttonPreview.setOnClickListener {
+            onPreviewButtonClick()
+        }
 
 
-        stackTitle= view.findViewById<TextView>(R.id.selectedStackTextView)
+        stackTitle= view.findViewById<TextView>(R.id.stackName)
+
+
+    
 
 
         updateCardCounts()
@@ -99,6 +119,12 @@ class StackDetailFragment : Fragment() {
         val intent = Intent(requireContext(), LearnActivity::class.java)
         intent.putExtra("stackTitle", stackTitle.text.toString())
         intent.putExtra("stackId", stackId)
+        startActivity(intent)
+    }
+
+    private fun onPreviewButtonClick() {
+        val intent = Intent(requireContext(), CardPreviewActivity::class.java)
+        intent.putExtra("stack_id", stackId)
         startActivity(intent)
     }
 

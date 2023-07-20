@@ -53,7 +53,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editTextText"
+                        android:id="@+id/txtFront"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -86,7 +86,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/hintereSeiteText"
+                    android:id="@+id/txtBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
