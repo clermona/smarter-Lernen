@@ -66,7 +66,7 @@ class AddCardActivity : AppCompatActivity()  {
 
         binding.aaCardButton.setOnClickListener {
 
-            val front = binding.frontText.text.toString()
+            val front = binding.txtFront.text.toString()
             val back = binding.txtBack.text.toString()
 
 
