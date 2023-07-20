@@ -4,16 +4,19 @@ import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.viewpager.widget.ViewPager
 import com.appdev.smarterlernen.database.AppDatabase
+import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityMainBinding
+
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,6 +25,7 @@ import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
+
     private lateinit var viewPager: ViewPager
     lateinit var binding: ActivityMainBinding
 
@@ -39,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
 
         // TO BE DELETED
@@ -56,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                         stackDao.update(test)
 
 
+
                     } else {
                         stackDao.insert(test)
                     }
@@ -67,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         tabLayout = binding.tabLayout
         viewPager = binding.viewPager
+
 
         val fabAdd = binding.fabAdd
         val fabAddCard = binding.fabAddCard

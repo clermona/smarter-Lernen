@@ -3,6 +3,7 @@ package com.appdev.smarterlernen
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -32,6 +33,8 @@ class AddCardActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_card)
+        getSupportActionBar()?.setHomeButtonEnabled(true);
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
         binding = ActivityAddCardBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -61,16 +64,29 @@ class AddCardActivity : AppCompatActivity()  {
         }
 
         binding.aaCardButton.setOnClickListener {
-            val front = binding.txtFront.text.toString()
-            val back = binding.txtBack.text.toString()
+
+            val front = binding.editTextText.text.toString()
+            val back = binding.hintereSeiteText.text.toString()
+
 
             if(front != null && back != null && stackId != 0) {
                 runBlocking {
                     launch(Dispatchers.Default) {
-                        cardDao.insert(Card(stackId, front, back))
+                        cardDao.insert(Card(stackId, front, back,0))
                     }
                 }
+                Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+
             }
+        }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

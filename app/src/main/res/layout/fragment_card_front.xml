@@ -18,10 +18,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Frage" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="196dp"
+                    android:layout_height="wrap_content"
+                    android:text="Frage" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="142dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right"
+                    android:text="Letzte Bewertung" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/cardId"
@@ -49,7 +64,9 @@
                 android:id="@+id/buttonShowBack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rückseite zeigen" />
+                android:background="@drawable/borderbutton"
+
+                android:text="Antwort zeigen" />
 
         </LinearLayout>
 
