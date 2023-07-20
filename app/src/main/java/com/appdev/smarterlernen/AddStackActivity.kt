@@ -31,6 +31,7 @@ class AddStackActivity : AppCompatActivity() {
         database = AppDatabase.getInstance(this)
         stackDao = database.stackDao()
 
+
         binding.createStackbutton.setOnClickListener {
             val title: String = binding.addStackText.text.toString()
 
@@ -39,11 +40,11 @@ class AddStackActivity : AppCompatActivity() {
                     launch(Dispatchers.Default) {
                         if(stackDao.getByTitle(title)  != null) {
                             stackDao.update(Stack(title,0))
-                            Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, " Created successfully", Toast.LENGTH_SHORT).show()
 
                         } else {
                             stackDao.insert(Stack(title,0))
-                            Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, " Created successfully", Toast.LENGTH_SHORT).show()
 
                         }
                     }

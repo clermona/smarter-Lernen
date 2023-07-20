@@ -79,6 +79,7 @@ class StackDetailFragment : Fragment() {
                 cardDao.getCountByStackId(stackId)
             }
             buttonPreview.isEnabled = cardCount != 0
+            buttonLearn.isEnabled = cardCount != 0
         }
 
         buttonLearn.setOnClickListener {
