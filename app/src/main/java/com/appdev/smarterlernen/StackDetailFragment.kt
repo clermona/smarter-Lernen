@@ -111,7 +111,7 @@ class StackDetailFragment : Fragment() {
             runBlocking {
                 launch(Dispatchers.Default) {
 
-                    allCards = cardDao.getAll()
+                    allCards = cardDao.getByStackId(stackId)
                     val sumNew = allCards.filter { it.rating == 0 }.count().toString()
                     val sumUsed = allCards.filter { it.rating >= 0 }.count().toString()
 
