@@ -2,25 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     tools:context=".AddStackActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#318CE7"
+        android:minHeight="?attr/actionBarSize"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/createStackTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/label_create_stack"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="100dp"
-        android:layout_below="@id/createStackTextView">
+        android:layout_below="@id/createStackTextView"
+        tools:ignore="NotSibling">
+
+        <TextView
+            android:id="@+id/createStackTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_create_stack"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"

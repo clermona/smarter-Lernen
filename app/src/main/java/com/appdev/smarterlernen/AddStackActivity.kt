@@ -6,6 +6,7 @@ import android.view.MenuItem
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.StackDao
+import com.appdev.smarterlernen.databinding.ActivityAddCardBinding
 import com.appdev.smarterlernen.databinding.ActivityAddStackBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,10 +22,11 @@ class AddStackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_stack)
 
-        binding = ActivityAddStackBinding.inflate(layoutInflater)
+        var binding = ActivityAddStackBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getSupportActionBar()?.setHomeButtonEnabled(true);
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         database = AppDatabase.getInstance(this)
         stackDao = database.stackDao()
 
