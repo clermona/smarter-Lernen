@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                         stackDao.update(test)
 
 
+
                     } else {
                         stackDao.insert(test)
                     }

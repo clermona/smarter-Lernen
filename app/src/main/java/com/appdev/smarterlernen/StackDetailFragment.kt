@@ -84,6 +84,7 @@ class StackDetailFragment : Fragment() {
     private fun updateCardCounts() {
         runBlocking {
             launch(Dispatchers.Default) {
+
                 allCards = cardDao.getAll()
                 val sumNew = allCards.filter { it.rating == 0 }.count().toString()
                 val sumUsed = allCards.filter { it.rating > 0 }.count().toString()

@@ -70,7 +70,12 @@ class StackOverviewFragment : Fragment() {
             val bundle = Bundle()
             bundle.putParcelable("selectedStack", selectedStack)
             stackDetailFragment.arguments = bundle
-
+        runBlocking {
+            launch(Dispatchers.Default) {
+                items = stackDao.getAll()
+                cardDao.insert(Card(selectedStack.id, " ", "", 0))
+            }
+        }
             val fragmentManager = requireActivity().supportFragmentManager
             fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, stackDetailFragment)
