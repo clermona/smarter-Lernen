@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Card
@@ -65,8 +66,8 @@ class AddCardActivity : AppCompatActivity()  {
 
         binding.aaCardButton.setOnClickListener {
 
-            val front = binding.editTextText.text.toString()
-            val back = binding.hintereSeiteText.text.toString()
+            val front = binding.frontText.text.toString()
+            val back = binding.txtBack.text.toString()
 
 
             if(front != null && back != null && stackId != 0) {
