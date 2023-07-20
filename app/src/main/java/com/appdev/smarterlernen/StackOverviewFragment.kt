@@ -71,7 +71,7 @@ class StackOverviewFragment : Fragment() {
         runBlocking {
             launch(Dispatchers.Default) {
                 items = stackDao.getAll()
-                cardDao.insert(Card(selectedStack.id, " ", "", 0))
+
             }
         }
             val fragmentManager = requireActivity().supportFragmentManager

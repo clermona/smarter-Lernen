@@ -35,9 +35,9 @@ class AddStackActivity : AppCompatActivity() {
                 runBlocking {
                     launch(Dispatchers.Default) {
                         if(stackDao.getByTitle(title)  != null) {
-                            stackDao.update(Stack(title))
+                            stackDao.update(Stack(title,0))
                         } else {
-                            stackDao.insert(Stack(title))
+                            stackDao.insert(Stack(title,0))
                         }
                     }
                 }

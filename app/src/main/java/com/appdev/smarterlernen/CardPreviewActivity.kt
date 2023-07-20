@@ -2,6 +2,7 @@ package com.appdev.smarterlernen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
@@ -29,7 +30,8 @@ class CardPreviewActivity : AppCompatActivity() {
 
         binding = ActivityCardPreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        getSupportActionBar()?.setHomeButtonEnabled(true);
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         database = AppDatabase.getInstance(this)
         stackDao = database.stackDao()
         cardDao = database.cardDao()
@@ -60,6 +62,15 @@ class CardPreviewActivity : AppCompatActivity() {
             binding.btnNext.setOnClickListener { updateCard(true) }
 
             binding.btnPrevious.setOnClickListener { updateCard(true, up = false) }
+        }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

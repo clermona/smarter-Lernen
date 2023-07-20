@@ -11,11 +11,14 @@ class LearnActivity : AppCompatActivity() {
         setContentView(R.layout.activity_learn)
         getSupportActionBar()?.setHomeButtonEnabled(true);
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
-        val cardsFrontFragment = LearnCardsOverview()
-        //val cardBackFragment = CardBackFragment()
-
+        val intent = intent
+        val stackId= intent.getStringExtra("stackId")
+        val learnCardsOverview = LearnCardsOverview()
+        val bundle = Bundle()
+        bundle.putString("selectedCards",stackId)
+        learnCardsOverview.arguments = bundle
         supportFragmentManager.beginTransaction()
-            .replace(R.id.cardFragmentContainer, LearnCardsOverview())
+            .replace(R.id.cardFragmentContainer, learnCardsOverview)
             //.replace(R.id.cardBackContainer, cardBackFragment)
             .commit()
     }
@@ -30,3 +33,4 @@ class LearnActivity : AppCompatActivity() {
         }
     }
 }
+

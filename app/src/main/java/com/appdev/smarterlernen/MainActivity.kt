@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         stackDao = database.stackDao()
         cardDao = database.cardDao()
 
-        val list = listOf(Stack("AppDev"), Stack("SecLab"))
+        val list = listOf(Stack("AppDev",0), Stack("SecLab",0))
 
         for (test in list) {
             runBlocking {

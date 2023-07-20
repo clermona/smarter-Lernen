@@ -10,6 +10,7 @@ import androidx.room.Relation
 @Entity(tableName = "stack")
 data class Stack(
     @ColumnInfo(name = "title") var title: String?,
+    @ColumnInfo(name = "rating") var rating:Int,
     @PrimaryKey var id: Int = (0..65535).random()
 ) : Parcelable {
     constructor(parcel: Parcel) : this(

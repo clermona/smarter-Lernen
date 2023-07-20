@@ -21,6 +21,7 @@ class StackAdapter(private val items: List<Stack>, private val context: Context,
     lateinit var database: AppDatabase
     lateinit var cardDao: CardDao
     var  numberCards:Int =0
+   lateinit var  ratedCards:List<Card>
     var  sum :Int =0
     var res:Int =0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StackViewHolder {
@@ -35,28 +36,30 @@ class StackAdapter(private val items: List<Stack>, private val context: Context,
         val item = items[position]
         runBlocking {
             launch(Dispatchers.Default) {
-                 numberCards=  cardDao.getByStackId(item.id).count()
+                ratedCards=cardDao.getByStackId(item.id)
+                 numberCards=  ratedCards.filter { it.rating != 0 }.count()
                  sum=  cardDao.getByStackId(item.id).sumOf{ item -> item.rating }
 
             }
         }
-        if(numberCards<=0)
-        holder.tVlevel.text="Keine Karten"
+        if(ratedCards.filter { it.rating==0 }.count()== ratedCards.count())
+        holder.tVlevel.text="Keine Bewertung"
         else {
 
-            res = sum / numberCards
+           item.rating  = sum / numberCards
             var resText = ""
 
-            if (res < 1.5)
+            if ( item.rating < 1.5)
                 resText = "Leicht"
-            if (res > 1.5 && res < 2.5)
+            if ( item.rating > 1.5 && res < 2.5)
                 resText = "Mittel"
-            if (res > 2.5)
+            if ( item.rating > 2.5)
                 resText = "Schwer"
 
             holder.tVlevel.text = "Berwertung: " + resText
         }
         holder.itemTitleTextView.text = item.title
+
             holder.itemView.setOnClickListener {
                 onItemClick(item)
             }
