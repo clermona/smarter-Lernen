@@ -12,10 +12,10 @@ class LearnActivity : AppCompatActivity() {
         getSupportActionBar()?.setHomeButtonEnabled(true);
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         val intent = intent
-        val stackId= intent.getStringExtra("stackId")
+        val stackId = intent.getIntExtra("stackId", 0)
         val learnCardsOverview = LearnCardsOverview()
         val bundle = Bundle()
-        bundle.putString("selectedCards",stackId)
+        bundle.putInt("selectedCards",stackId)
         learnCardsOverview.arguments = bundle
         supportFragmentManager.beginTransaction()
             .replace(R.id.cardFragmentContainer, learnCardsOverview)

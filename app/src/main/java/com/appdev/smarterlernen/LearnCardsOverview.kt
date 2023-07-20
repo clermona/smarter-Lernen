@@ -22,7 +22,7 @@ class LearnCardsOverview: Fragment() {
     lateinit var stackDao: StackDao
     lateinit var cardDao: CardDao
     lateinit var items: List<Card>
-     var stackId: Int=0
+     var stackId: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,7 +31,7 @@ class LearnCardsOverview: Fragment() {
         val view = inflater.inflate(R.layout.fragment_learn_cards, container, false)
         recyclerView = view.findViewById(R.id.listRecyclerView2)
         arguments?.let {
-            var stackId = it.getString("stackId") ?: 0
+             stackId = it.getInt("selectedCards")
 
 
         }
