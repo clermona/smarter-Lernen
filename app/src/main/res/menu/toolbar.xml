@@ -10,12 +10,12 @@
         <menu>
 
             <item android:id="@+id/action_settings"
-                android:icon="@android:drawable/ic_menu_preferences"
+                android:icon="@android:drawable/ic_menu_add"
                 app:showAsAction="ifRoom"
                 android:title="Karte hinzufügen" />
 
             <item android:id="@+id/action_help"
-                android:icon="@android:drawable/ic_menu_help"
+                android:icon="@android:drawable/ic_menu_add"
                 app:showAsAction="ifRoom"
                 android:title="Stack hinzufügen" />
 

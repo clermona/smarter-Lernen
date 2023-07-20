@@ -9,8 +9,8 @@ class LearnActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn)
-        getSupportActionBar()?.setHomeButtonEnabled(true);
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        getSupportActionBar()?.setDisplayShowCustomEnabled(false);
         val intent = intent
         val stackId = intent.getIntExtra("stackId", 0)
         val learnCardsOverview = LearnCardsOverview()

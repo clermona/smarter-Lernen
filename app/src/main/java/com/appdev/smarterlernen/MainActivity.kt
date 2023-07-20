@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
+        getSupportActionBar()?.setDisplayShowHomeEnabled(false)
+        getSupportActionBar()?.setDisplayShowCustomEnabled(true);
         //initial binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
