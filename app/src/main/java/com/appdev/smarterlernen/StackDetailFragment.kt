@@ -71,7 +71,8 @@ class StackDetailFragment : Fragment() {
         database = AppDatabase.getInstance(requireContext())
         cardDao = database.cardDao()
 
-        buttonLearn = view.findViewById<Button>(R.id.buttonLernen)
+        buttonLearn = view.findViewById(R.id.buttonLernen)
+        buttonLearn.isEnabled=false
         buttonPreview = view.findViewById(R.id.buttonVorschau)
 
         runBlocking {
@@ -88,10 +89,6 @@ class StackDetailFragment : Fragment() {
         }
         newCards.text = ""
         usedCards.text = ""
-        buttonLearn.isEnabled = false
-        if (stackNameTextView.text != "") {
-            buttonLearn.isEnabled = true
-        }
 
         buttonPreview.setOnClickListener {
             onPreviewButtonClick()
