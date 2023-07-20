@@ -16,6 +16,8 @@ import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityMainBinding
+import android.view.Menu
+import android.view.MenuInflater
 
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.Dispatchers
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        setSupportActionBar(binding.toolbar)
 
 
         // TO BE DELETED
@@ -117,5 +120,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbar, menu)
+        return true
     }
 }
