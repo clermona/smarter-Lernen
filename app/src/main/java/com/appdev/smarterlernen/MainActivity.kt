@@ -18,6 +18,7 @@ import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityMainBinding
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.Dispatchers
@@ -40,15 +41,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(false)
-        getSupportActionBar()?.setDisplayShowCustomEnabled(true);
+
         //initial binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
         setSupportActionBar(binding.toolbar)
-
 
         // TO BE DELETED
         database = AppDatabase.getInstance(this)
@@ -78,14 +77,6 @@ class MainActivity : AppCompatActivity() {
         viewPager = binding.viewPager
 
 
-        val fabAdd = binding.fabAdd
-        val fabAddCard = binding.fabAddCard
-        val fabAddStack = binding.fabAddStack
-        val txtFabCard = binding.txtAddCard
-        val txtFabStack = binding.txtAddStack
-
-        var isAllFabsVisible = false
-
         val adapter = PagerAdapter(supportFragmentManager)
         adapter.addFragment(
             StackOverviewFragment(),
@@ -95,36 +86,29 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
 
-        fabAdd.setOnClickListener {
-            if (!isAllFabsVisible) {
-                fabAddCard.show()
-                fabAddStack.show()
-                txtFabCard.visibility = View.VISIBLE
-                txtFabStack.visibility = View.VISIBLE
-                isAllFabsVisible = true
-            } else {
-                fabAddCard.hide()
-                fabAddStack.hide()
-                txtFabCard.visibility = View.INVISIBLE
-                txtFabStack.visibility = View.INVISIBLE
-                isAllFabsVisible = false
-            }
-        }
 
-        fabAddCard.setOnClickListener {
-            val intent = Intent(this, AddCardActivity::class.java)
-            startActivity(intent)
-        }
-
-        fabAddStack.setOnClickListener {
-            val intent = Intent(this, AddStackActivity::class.java)
-            startActivity(intent)
-        }
 
 
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
+
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_addcard -> {
+                val intent = Intent(this, AddCardActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_addstack -> {
+                val intent = Intent(this, AddStackActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }

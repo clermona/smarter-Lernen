@@ -9,12 +9,12 @@
     app:showAsAction="ifRoom" >
         <menu>
 
-            <item android:id="@+id/action_settings"
+            <item android:id="@+id/action_addcard"
                 android:icon="@android:drawable/ic_menu_add"
                 app:showAsAction="ifRoom"
                 android:title="Karte hinzufügen" />
 
-            <item android:id="@+id/action_help"
+            <item android:id="@+id/action_addstack"
                 android:icon="@android:drawable/ic_menu_add"
                 app:showAsAction="ifRoom"
                 android:title="Stack hinzufügen" />

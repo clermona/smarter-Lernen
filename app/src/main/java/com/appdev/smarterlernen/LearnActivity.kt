@@ -3,14 +3,18 @@ package com.appdev.smarterlernen
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.appdev.smarterlernen.databinding.ActivityLearnBinding
+import com.appdev.smarterlernen.databinding.ActivityMainBinding
 
 
 class LearnActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
-        getSupportActionBar()?.setDisplayShowCustomEnabled(false);
+        var binding = ActivityLearnBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val intent = intent
         val stackId = intent.getIntExtra("stackId", 0)
         val learnCardsOverview = LearnCardsOverview()
