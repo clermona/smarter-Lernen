@@ -3,6 +3,7 @@ package com.appdev.smarterlernen
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.StackDao
@@ -38,8 +39,12 @@ class AddStackActivity : AppCompatActivity() {
                     launch(Dispatchers.Default) {
                         if(stackDao.getByTitle(title)  != null) {
                             stackDao.update(Stack(title,0))
+                            Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+
                         } else {
                             stackDao.insert(Stack(title,0))
+                            Toast.makeText(baseContext, " Created successfully", Toast.LENGTH_SHORT).show()
+
                         }
                     }
                 }
