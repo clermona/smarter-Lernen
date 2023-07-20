@@ -111,5 +111,25 @@
         android:layout_marginEnd="22dp"
         android:text="@string/button_text_add_card" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#318CE7"
+        android:minHeight="?attr/actionBarSize"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
 
 </RelativeLayout>

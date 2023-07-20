@@ -17,6 +17,7 @@ import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityAddCardBinding
+import com.appdev.smarterlernen.databinding.ActivityLearnBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -34,11 +35,12 @@ class AddCardActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_card)
-        getSupportActionBar()?.setHomeButtonEnabled(true);
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
-        binding = ActivityAddCardBinding.inflate(layoutInflater)
+        var binding = ActivityAddCardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         database = AppDatabase.getInstance(this)
         cardDao = database.cardDao()
