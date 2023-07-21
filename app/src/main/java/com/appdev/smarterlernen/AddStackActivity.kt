@@ -1,5 +1,6 @@
 package com.appdev.smarterlernen
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -55,6 +56,10 @@ class AddStackActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+        binding.addCardsButton.setOnClickListener{
+            val intent = Intent(this, AddCardActivity::class.java)
+            startActivity(intent)
+        }
         binding.createStackbutton.setOnClickListener {
             val title: String = binding.addStackText.text.toString()
 
