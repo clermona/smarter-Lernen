@@ -2,7 +2,11 @@ package com.appdev.smarterlernen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Stack
@@ -12,12 +16,16 @@ import com.appdev.smarterlernen.databinding.ActivityAddStackBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class AddStackActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityAddStackBinding
     lateinit var database: AppDatabase
     lateinit var stackDao: StackDao
+    lateinit var tvStackTitel:EditText
+    lateinit var btnAdd:Button
+    lateinit var btnAddCard:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +35,25 @@ class AddStackActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+         tvStackTitel = binding.addStackText
+        btnAdd = binding.createStackbutton
+        btnAddCard = binding.addCardsButton
         database = AppDatabase.getInstance(this)
         stackDao = database.stackDao()
+        btnAdd.isEnabled=false
+        btnAddCard.isEnabled=false
+        tvStackTitel.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Update button states based on the text in the EditText
+                val isTextEmpty = s.isNullOrBlank()
+                btnAdd.isEnabled = !isTextEmpty
+                btnAddCard.isEnabled = !isTextEmpty
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
 
         binding.createStackbutton.setOnClickListener {
             val title: String = binding.addStackText.text.toString()
