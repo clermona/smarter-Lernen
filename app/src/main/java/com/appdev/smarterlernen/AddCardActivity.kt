@@ -36,7 +36,7 @@ class AddCardActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_card)
 
-        var binding = ActivityAddCardBinding.inflate(layoutInflater)
+         binding = ActivityAddCardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

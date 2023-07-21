@@ -8,6 +8,7 @@ import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
+import com.appdev.smarterlernen.databinding.ActivityAddCardBinding
 import com.appdev.smarterlernen.databinding.ActivityCardPreviewBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,10 +29,11 @@ class CardPreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_preview)
 
-        binding = ActivityCardPreviewBinding.inflate(layoutInflater)
+
+         binding = ActivityCardPreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getSupportActionBar()?.setHomeButtonEnabled(true);
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         database = AppDatabase.getInstance(this)
         stackDao = database.stackDao()
         cardDao = database.cardDao()

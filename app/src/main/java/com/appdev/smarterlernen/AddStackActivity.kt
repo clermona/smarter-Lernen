@@ -23,7 +23,7 @@ class AddStackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_stack)
 
-        var binding = ActivityAddStackBinding.inflate(layoutInflater)
+         binding = ActivityAddStackBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -40,15 +40,16 @@ class AddStackActivity : AppCompatActivity() {
                     launch(Dispatchers.Default) {
                         if(stackDao.getByTitle(title)  != null) {
                             stackDao.update(Stack(title,0))
-                            Toast.makeText(applicationContext, " Created successfully", Toast.LENGTH_SHORT).show()
 
                         } else {
                             stackDao.insert(Stack(title,0))
-                            Toast.makeText(applicationContext, " Created successfully", Toast.LENGTH_SHORT).show()
+
 
                         }
                     }
                 }
+                Toast.makeText(applicationContext, " Created successfully", Toast.LENGTH_SHORT).show()
+
 
             }
         }
