@@ -50,6 +50,13 @@
                 android:layout_height="wrap_content"
                 android:text="Titel" />
 
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="38dp"
+                android:layout_height="39dp"
+                android:src="@android:drawable/ic_menu_edit"
+                android:background="@android:color/transparent"/>
+
             <TextView
                 android:id="@+id/tVContent"
                 android:layout_width="383dp"

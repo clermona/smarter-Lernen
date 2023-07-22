@@ -18,4 +18,7 @@
     <string name="label_card_number">Karte %d von %d</string>
     <string name="button_text_previous">Letzte</string>
     <string name="button_text_next">Nächste</string>
+    <string name="button_text_save">Speichern</string>
+    <string name="button_text_delete">Löschen</string>
+
 </resources>
