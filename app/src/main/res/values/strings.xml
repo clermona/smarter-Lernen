@@ -20,5 +20,6 @@
     <string name="button_text_next">Nächste</string>
     <string name="button_text_save">Speichern</string>
     <string name="button_text_delete">Löschen</string>
+    <string name="buttonShowBack">Antwort zeigen</string>
 
 </resources>

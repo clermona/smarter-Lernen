@@ -51,7 +51,7 @@
                 android:text="Titel" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/editBtn"
                 android:layout_width="38dp"
                 android:layout_height="39dp"
                 android:src="@android:drawable/ic_menu_edit"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/borderbutton"
 
-                android:text="Antwort zeigen" />
+                android:text="@string/buttonShowBack" />
 
         </LinearLayout>
 

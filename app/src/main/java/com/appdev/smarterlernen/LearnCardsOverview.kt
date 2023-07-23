@@ -66,7 +66,7 @@ class LearnCardsOverview: Fragment() {
             items=items.sortedByDescending { it.rating }
 
 
-            val adapter = CardAdapter(items,requireContext()) { item ->
+            val adapter = CardAdapter(items,requireContext(),  { item ->
                 val fragmentManager = requireActivity().supportFragmentManager
                 val newFragment = CardBackFragment()
 
@@ -81,13 +81,16 @@ class LearnCardsOverview: Fragment() {
                     .commit()
 
 
-            }
+            }, {item->
+                val intent = Intent(requireContext(), CardPreviewActivity::class.java)
+                //boolean fuer edit Modus, wenn in edit dann sind die Buttons Prev/ Next nicht sichtbar
+                intent.putExtra("stack_id", item.stackId)
+                startActivity(intent)
+            })
 
             adapter.updateData(items)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = adapter
-
-
         }
     }
 

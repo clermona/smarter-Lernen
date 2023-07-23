@@ -18,4 +18,5 @@
     <string name="button_text_next">Next</string>
     <string name="button_text_save">Save</string>
     <string name="button_text_delete">Delete</string>
+    <string name="buttonShowBack">Show answer</string>
 </resources>

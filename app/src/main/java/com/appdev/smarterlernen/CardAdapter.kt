@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class CardAdapter(private var items: List<Card>, private val context: Context, private val onItemClick: (Card) -> Unit) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardAdapter(private var items: List<Card>, private val context: Context, private val onItemClick: (Card) -> Unit, private val onEditClick: (Card) -> Unit) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     lateinit var database: AppDatabase
     lateinit var stackDao: StackDao
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -50,6 +51,9 @@ class CardAdapter(private var items: List<Card>, private val context: Context, p
             onItemClick(item)
         }
 
+        holder.editBtn.setOnClickListener {
+            onEditClick(item)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -68,7 +72,7 @@ class CardAdapter(private var items: List<Card>, private val context: Context, p
         val cardId: TextView = itemView.findViewById(R.id.cardId)
         val tVContent: TextView = itemView.findViewById(R.id.tVContent)
         val tvRating: TextView = itemView.findViewById(R.id.rating)
-
+        val editBtn: ImageButton = itemView.findViewById(R.id.editBtn)
     }
 }
 

@@ -1,5 +1,7 @@
 package com.appdev.smarterlernen
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -29,6 +31,7 @@ class CardPreviewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_card_preview)
 
         binding = ActivityCardPreviewBinding.inflate(layoutInflater)
@@ -156,6 +159,16 @@ class CardPreviewActivity : AppCompatActivity() {
         if (frontSide != null && backSide != null) {
             binding.txtFront.text = Editable.Factory.getInstance().newEditable(frontSide)
             binding.txtBack.text = Editable.Factory.getInstance().newEditable(backSide)
+        }
+    }
+
+    companion object {
+        private const val EXTRA_STACK_ID = "extra_stack_id"
+
+        fun newIntent(context: Context, stackId: Int): Intent {
+            val intent = Intent(context, CardPreviewActivity::class.java)
+            intent.putExtra(EXTRA_STACK_ID, stackId)
+            return intent
         }
     }
 
