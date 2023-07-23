@@ -32,8 +32,6 @@ class LearnCardsOverview: Fragment() {
         recyclerView = view.findViewById(R.id.listRecyclerView2)
         arguments?.let {
              stackId = it.getInt("selectedCards")
-
-
         }
         database = AppDatabase.getInstance(requireContext())
         stackDao = database.stackDao()
@@ -85,6 +83,8 @@ class LearnCardsOverview: Fragment() {
                 val intent = Intent(requireContext(), CardPreviewActivity::class.java)
                 //boolean fuer edit Modus, wenn in edit dann sind die Buttons Prev/ Next nicht sichtbar
                 intent.putExtra("stack_id", item.stackId)
+                intent.putExtra("edit_mode", true)
+                intent.putExtra("card_id", item.id)
                 startActivity(intent)
             })
 

@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.view.isVisible
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
@@ -26,6 +28,7 @@ class CardPreviewActivity : AppCompatActivity() {
     lateinit var stackDao: StackDao
     lateinit var cardDao: CardDao
     lateinit var stack: Stack
+    var cardId: Int = 0
     lateinit var cardList: List<Card>
     var tabIndex: Int = 0
 
@@ -54,6 +57,12 @@ class CardPreviewActivity : AppCompatActivity() {
                 stack = stackDao.getById(stackId)
                 cardList = cardDao.getByStackId(stackId)
             }
+        }
+
+        if(intent.getBooleanExtra("edit_mode", false)) {
+            binding.btnPrevious.isVisible = false
+            binding.btnNext.isVisible = false
+            cardId = intent.getIntExtra("card_id", 0)
         }
 
         binding.stackName.text = stack.title
@@ -85,7 +94,20 @@ class CardPreviewActivity : AppCompatActivity() {
                     }
 
                     cardList = cardList.toMutableList().apply { removeAt(tabIndex) }
-                    updateCard(false) // Um die Anzeige zu aktualisieren
+
+                    if(intent.getBooleanExtra("edit_mode", false)) {
+                        val intent = Intent(this, LearnActivity::class.java)
+                        intent.putExtra("stackTitle", stack.title)
+                        intent.putExtra("stackId", stack.id)
+                        startActivity(intent)
+                    }
+
+                    if(cardList.isEmpty()) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        updateCard(false)
+                    }
                 }
             }
 
@@ -107,6 +129,15 @@ class CardPreviewActivity : AppCompatActivity() {
             // Die Aktualisierungsoperation in einem Hintergrundthread ausführen
             withContext(Dispatchers.IO) {
                 cardDao.update(cardToUpdate)
+            }
+
+            if(intent.getBooleanExtra("edit_mode", false)) {
+                val intent = Intent(this, LearnActivity::class.java)
+                intent.putExtra("stackTitle", stack.title)
+                intent.putExtra("stackId", stack.id)
+                startActivity(intent)
+            } else {
+                updateCard(false)
             }
         }
     }
@@ -134,6 +165,10 @@ class CardPreviewActivity : AppCompatActivity() {
                     tabIndex--
                 }
             }
+        }
+
+        if(cardId != 0) {
+            tabIndex = cardList.indexOfFirst {it.id == cardId}
         }
 
         binding.btnPrevious.isEnabled = tabIndex != 0
