@@ -16,4 +16,7 @@
     <string name="label_card_number">Card %d of %d</string>
     <string name="button_text_previous">Prev</string>
     <string name="button_text_next">Next</string>
+    <string name="button_text_save">Save</string>
+    <string name="button_text_delete">Delete</string>
+    <string name="buttonShowBack">Show answer</string>
 </resources>
