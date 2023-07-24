@@ -114,8 +114,8 @@ class StackDetailFragment : Fragment() {
                     val sumUsed = allCards.filter { it.rating >= 0 }.count().toString()
 
                     // Update the TextViews with the card counts
-                    newCards.text = "Neu: $sumNew"
-                    usedCards.text = "Wiederholen: $sumUsed"
+                    newCards.text = requireContext().getString(R.string.label_new, sumNew)
+                    usedCards.text = requireContext().getString(R.string.label_repeat, sumUsed)
                 }
             }
         }

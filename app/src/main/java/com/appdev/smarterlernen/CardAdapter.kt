@@ -30,21 +30,23 @@ class CardAdapter(private var items: List<Card>, private val context: Context, p
         val item = items[position]
         runBlocking {
             launch(Dispatchers.Default) {
-                holder.tVTitle.text= stackDao.getById(item.stackId).title.toString()
-
+                val stackTitle = stackDao.getById(item.stackId).title.toString()
+                holder.tVTitle.text= context.getString(R.string.label_stack, stackTitle)
             }
         }
 
-        holder.cardId.text=item.id.toString()
+        val cardId = item.id
+
+        holder.cardId.text = context.getString(R.string.label_question, cardId)
         holder.tVContent.text=item.frontSide
    if (item.rating ==0){
-       holder.tvRating.text="no rating"
+       holder.tvRating.text = context.getString(R.string.label_no_rating)
    } else if (item.rating== 1) {
-       holder.tvRating.text= "Leicht"
+       holder.tvRating.text= context.getString(R.string.label_rating_easy)
    }else if (item.rating== 2) {
-       holder.tvRating.text= "Mittel"
+       holder.tvRating.text= context.getString(R.string.label_rating_medium)
    }else if (item.rating== 3) {
-       holder.tvRating.text= "Schwer"
+       holder.tvRating.text= context.getString(R.string.label_rating_difficult)
    }
         items =items.sortedByDescending { it.rating }
         holder.buttonShowBack.setOnClickListener {

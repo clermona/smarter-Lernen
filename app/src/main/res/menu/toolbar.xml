@@ -9,15 +9,17 @@
     app:showAsAction="ifRoom" >
         <menu>
 
-            <item android:id="@+id/action_addcard"
+            <item
+                android:id="@+id/action_addcard"
                 android:icon="@android:drawable/ic_menu_add"
-                app:showAsAction="ifRoom"
-                android:title="Karte hinzufügen" />
+                android:title="@string/button_text_add_card"
+                app:showAsAction="ifRoom" />
 
-            <item android:id="@+id/action_addstack"
+            <item
+                android:id="@+id/action_addstack"
                 android:icon="@android:drawable/ic_menu_add"
-                app:showAsAction="ifRoom"
-                android:title="Stack hinzufügen" />
+                android:title="@string/button_text_create_stack"
+                app:showAsAction="ifRoom" />
 
         </menu>
     </item>

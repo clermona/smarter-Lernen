@@ -1,13 +1,11 @@
 package com.appdev.smarterlernen
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.appdev.smarterlernen.R
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
@@ -15,7 +13,6 @@ import com.appdev.smarterlernen.database.interfaces.CardDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlin.properties.Delegates
 
 class StackAdapter(private val items: List<Stack>, private val context: Context, private val onItemClick: (Stack) -> Unit) : RecyclerView.Adapter<StackAdapter.StackViewHolder>() {
     lateinit var database: AppDatabase
@@ -43,20 +40,20 @@ class StackAdapter(private val items: List<Stack>, private val context: Context,
             }
         }
         if(ratedCards.filter { it.rating==0 }.count()== ratedCards.count())
-        holder.tVlevel.text="Keine Bewertung"
+        holder.tVlevel.text = context.getString(R.string.label_no_rating)
         else {
 
            item.rating  = sum / numberCards
             var resText = ""
 
             if ( item.rating < 1.5)
-                resText = "Leicht"
+                resText = context.getString(R.string.label_rating_easy)
             if ( item.rating > 1.5 && res < 2.5)
-                resText = "Mittel"
+                resText = context.getString(R.string.label_rating_medium)
             if ( item.rating > 2.5)
-                resText = "Schwer"
+                resText = context.getString(R.string.label_rating_difficult)
 
-            holder.tVlevel.text = "Berwertung: " + resText
+            holder.tVlevel.text = context.getString(R.string.label_rating, resText)
         }
         holder.itemTitleTextView.text = item.title
 

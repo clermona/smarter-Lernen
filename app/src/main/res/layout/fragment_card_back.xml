@@ -18,11 +18,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Antwort" />
-
-            <TextView
                 android:id="@+id/cardId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,40 +47,40 @@
 
                 <Button
                     android:id="@+id/buttonLeicht"
-                    android:onClick="onbuttonLeichClick"
                     android:layout_width="123dp"
                     android:layout_height="match_parent"
-
-                    app:backgroundTint="@color/green"
                     android:background="@drawable/borderbutton"
+
                     android:drawableTint="@color/green"
-                    android:text="Leicht" />
+                    android:onClick="onbuttonLeichClick"
+                    android:text="@string/label_rating_easy"
+                    app:backgroundTint="@color/green" />
 
                 <Button
                     android:id="@+id/buttonMittel"
-                    android:onClick="onbuttonMittelClick"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:cornerRadius="0dp"
-                    android:backgroundTint="@color/grey"
-                    app:backgroundTint="@color/grey"
                     android:background="@drawable/borderbutton"
+                    android:backgroundTint="@color/grey"
                     android:drawableTint="@color/green"
-                    android:text="Mittel" />
+                    android:onClick="onbuttonMittelClick"
+                    android:text="@string/label_rating_medium"
+                    app:backgroundTint="@color/grey"
+                    app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/buttonSchwer"
                     android:layout_width="130dp"
-                    android:onClick="onbuttonSchwerClick"
-                    app:cornerRadius="0dp"
-                    android:backgroundTint="@color/red"
-                    app:backgroundTint="@color/red"
-                    android:background="@drawable/borderbutton"
-                    android:drawableTint="@color/green"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/borderbutton"
+                    android:backgroundTint="@color/red"
+                    android:drawableTint="@color/green"
+                    android:onClick="onbuttonSchwerClick"
+                    android:text="@string/label_rating_difficult"
+                    app:backgroundTint="@color/red"
 
-                    android:text="Schwer" />
+                    app:cornerRadius="0dp" />
             </LinearLayout>
 
         </LinearLayout>

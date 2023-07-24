@@ -3,8 +3,6 @@
     <string name="app_name">Smarter Lernen</string>
     <string name="page_title_stacks">Stacks</string>
     <string name="page_title_management">Management</string>
-    <string name="fab_title_add_stack">Add Stack</string>
-    <string name="fab_title_add_card">Add Card</string>
     <string name="button_text_learn">Learn</string>
     <string name="button_text_preview">Preview</string>
     <string name="button_text_add_card">Add Card</string>
@@ -19,4 +17,15 @@
     <string name="button_text_save">Save</string>
     <string name="button_text_delete">Delete</string>
     <string name="buttonShowBack">Show answer</string>
+    <string name="label_no_rating">No rating</string>
+    <string name="label_rating">Rating: %s</string>
+    <string name="label_rating_easy">Easy</string>
+    <string name="label_rating_difficult">Difficult</string>
+    <string name="label_rating_medium">Medium</string>
+    <string name="label_question">Question #%d</string>
+    <string name="label_stack">Stack: %s</string>
+    <string name="label_answer">Answer %d</string>
+    <string name="toast_rated_success">Rated successfully</string>
+    <string name="label_new">New: %s</string>
+    <string name="label_repeat">Repeat: %s</string>
 </resources>

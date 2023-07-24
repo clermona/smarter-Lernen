@@ -94,13 +94,12 @@ if (cardObject!=null) {
 
     runBlocking {
         launch(Dispatchers.Default) {
-
-
-           titel.text= stackDao.getById(cardObject.stackId).title
+            var stackTitle = stackDao.getById(cardObject.stackId).title
+           titel.text= requireContext().getString(R.string.label_stack, stackTitle)
         }
     }
 
-    cardId.text= cardObject.id.toString()
+    cardId.text= requireContext().getString(R.string.label_question, cardObject.id)
     buttonLeicht.setOnClickListener {
         runBlocking {
             launch(Dispatchers.Default) {
@@ -110,7 +109,7 @@ if (cardObject!=null) {
                 cardDao.update(updateCard)
             }
         }
-        Toast.makeText(requireContext(), "Rated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), R.string.toast_rated_success, Toast.LENGTH_SHORT).show()
 
     }
     buttonMittel.setOnClickListener {
@@ -123,7 +122,7 @@ if (cardObject!=null) {
                 cardDao.update(updateCard)
             }
         }
-        Toast.makeText(requireContext(), "Rated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), R.string.toast_rated_success, Toast.LENGTH_SHORT).show()
     }
     buttonSchwer.setOnClickListener {
 
@@ -135,7 +134,7 @@ if (cardObject!=null) {
                 cardDao.update(updateCard)
             }
         }
-        Toast.makeText(requireContext(), "Rated successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), R.string.toast_rated_success, Toast.LENGTH_SHORT).show()
 
     }
 }

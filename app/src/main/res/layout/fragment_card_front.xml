@@ -24,9 +24,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="196dp"
+                    android:id="@+id/cardId"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Frage" />
+                    android:text="card Id" />
 
                 <TextView
                     android:id="@+id/rating"
@@ -37,12 +38,6 @@
                     android:gravity="right"
                     android:text="Letzte Bewertung" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/cardId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="card Id" />
 
             <TextView
                 android:id="@+id/textView2"
