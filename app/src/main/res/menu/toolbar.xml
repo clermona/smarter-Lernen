@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menuebar">
+    <item
+        android:id="@+id/btncard"
+    android:icon="@drawable/plus"
+    android:title="Menü"
+    app:showAsAction="ifRoom" >
+        <menu>
+
+            <item
+                android:id="@+id/action_addcard"
+                android:icon="@android:drawable/ic_menu_add"
+                android:title="@string/button_text_add_card"
+                app:showAsAction="ifRoom" />
+
+            <item
+                android:id="@+id/action_addstack"
+                android:icon="@android:drawable/ic_menu_add"
+                android:title="@string/button_text_create_stack"
+                app:showAsAction="ifRoom" />
+
+        </menu>
+    </item>
+
+</menu>

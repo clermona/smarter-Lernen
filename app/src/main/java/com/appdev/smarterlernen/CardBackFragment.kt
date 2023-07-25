@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.appdev.smarterlernen.database.AppDatabase
 import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityAddCardBinding
+import com.appdev.smarterlernen.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -37,7 +39,9 @@ class CardBackFragment : Fragment()   {
     lateinit var database: AppDatabase
     lateinit var cardDao: CardDao
     lateinit var stackDao: StackDao
+    lateinit var updateCard: Card
     lateinit var stacks: List<Stack>
+
     var stackId: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,8 @@ class CardBackFragment : Fragment()   {
                 stacks = stackDao.getAll()
             }
         }
+
+
 
         cardDao = database.cardDao()
         val customAdapter = SpinnerStackAdapter(requireActivity(), stacks)
@@ -64,52 +70,76 @@ class CardBackFragment : Fragment()   {
                 // Handle the case when nothing is selected
             }
         }
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_card_back, container, false)
         val buttonLeicht = view.findViewById<Button>(R.id.buttonLeicht)
         val buttonMittel = view.findViewById<Button>(R.id.buttonMittel)
         val buttonSchwer = view.findViewById<Button>(R.id.buttonSchwer)
         val cardId = view.findViewById<TextView>(R.id.cardId)
 
-        val backSide = CardBackFragment()
+        val cardObject = arguments?.getSerializable("currentCard") as? Card
+        val answer = view.findViewById<TextView>(R.id.textView3)
+        val titel = view.findViewById<TextView>(R.id.textView2)
 
-        buttonLeicht.setOnClickListener {
-            runBlocking {
-                launch(Dispatchers.Default) {
 
-                    val cardIdString = cardId.text.toString()
-                    val cardIdInt = cardIdString.toInt()
-                    val updateCard = cardDao.getById(cardIdInt)
-                    updateCard.rating= "Leicht";
-                    cardDao.update(updateCard)
-                }
+if (cardObject!=null) {
+    answer.text=cardObject.backSide
+
+    runBlocking {
+        launch(Dispatchers.Default) {
+            var stackTitle = stackDao.getById(cardObject.stackId).title
+           titel.text= requireContext().getString(R.string.label_stack, stackTitle)
+        }
+    }
+
+    cardId.text= requireContext().getString(R.string.label_question, cardObject.id)
+    buttonLeicht.setOnClickListener {
+        runBlocking {
+            launch(Dispatchers.Default) {
+
+                updateCard = cardDao.getById(cardObject.id)
+                updateCard.rating = 1;
+                cardDao.update(updateCard)
             }
         }
-        buttonMittel.setOnClickListener {
-            val cardIdString = cardId.text.toString()
-            val cardIdInt = cardIdString.toInt()
-            val updateCard = cardDao.getById(cardIdInt)
-            updateCard.rating= "Mittel";
-            cardDao.update(updateCard)
+        Toast.makeText(requireContext(), R.string.toast_rated_success, Toast.LENGTH_SHORT).show()
+
+    }
+    buttonMittel.setOnClickListener {
+
+        runBlocking {
+            launch(Dispatchers.Default) {
+
+                updateCard = cardDao.getById(cardObject.id)
+                updateCard.rating = 2;
+                cardDao.update(updateCard)
+            }
         }
-        buttonSchwer.setOnClickListener {
-            val cardIdString = cardId.text.toString()
-            val cardIdInt = cardIdString.toInt()
-            val updateCard = cardDao.getById(cardIdInt)
-            updateCard.rating= "Schwer";
-            cardDao.update(updateCard)
+        Toast.makeText(requireContext(), R.string.toast_rated_success, Toast.LENGTH_SHORT).show()
+    }
+    buttonSchwer.setOnClickListener {
+
+        runBlocking {
+            launch(Dispatchers.Default) {
+
+                updateCard = cardDao.getById(cardObject.id)
+                updateCard.rating = 3;
+                cardDao.update(updateCard)
+            }
         }
+        Toast.makeText(requireContext(), R.string.toast_rated_success, Toast.LENGTH_SHORT).show()
+
+    }
+}
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_back, container, false)
+        return view
     }
 
     companion object {

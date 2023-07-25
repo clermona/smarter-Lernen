@@ -1,5 +1,6 @@
 package com.appdev.smarterlernen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,17 @@ class LearnCardsOverview: Fragment() {
     lateinit var stackDao: StackDao
     lateinit var cardDao: CardDao
     lateinit var items: List<Card>
+     var stackId: Int = 0
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_learn_cards, container, false)
         recyclerView = view.findViewById(R.id.listRecyclerView2)
-
+        arguments?.let {
+             stackId = it.getInt("selectedCards")
+        }
         database = AppDatabase.getInstance(requireContext())
         stackDao = database.stackDao()
         cardDao = database.cardDao()
@@ -41,10 +48,11 @@ class LearnCardsOverview: Fragment() {
     private fun retrieveData() {
         runBlocking {
             launch(Dispatchers.Default) {
-                items = cardDao.getAll()
+                items = cardDao.getByStackId(stackId)
 
             }
         }
+
     }
 
 
@@ -52,19 +60,40 @@ class LearnCardsOverview: Fragment() {
         retrieveData()
 
         if (items.isNotEmpty()) {
-            val adapter = CardAdapter(items,requireContext()) { item ->
+
+            items=items.sortedByDescending { it.rating }
 
 
-                    val fragmentManager = requireActivity().supportFragmentManager
-                    fragmentManager.beginTransaction()
-                        .replace(R.id.cardFragmentContainer, CardBackFragment())
-                        .addToBackStack(null)
-                        .commit()
-                }
+            val adapter = CardAdapter(items,requireContext(),  { item ->
+                val fragmentManager = requireActivity().supportFragmentManager
+                val newFragment = CardBackFragment()
 
-            recyclerView.adapter = adapter
+                val bundle = Bundle()
+                bundle.putSerializable("currentCard", item)
+                newFragment.arguments = bundle
+
+
+                fragmentManager.beginTransaction()
+                    .replace(R.id.cardFragmentContainer, newFragment)
+                    .addToBackStack(null)
+                    .commit()
+
+
+            }, {item->
+                val intent = Intent(requireContext(), CardPreviewActivity::class.java)
+                //boolean fuer edit Modus, wenn in edit dann sind die Buttons Prev/ Next nicht sichtbar
+                intent.putExtra("stack_id", item.stackId)
+                intent.putExtra("edit_mode", true)
+                intent.putExtra("card_id", item.id)
+                startActivity(intent)
+            })
+
+            adapter.updateData(items)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = adapter
         }
     }
 
 }
+
+

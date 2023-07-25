@@ -7,8 +7,14 @@
     android:gravity="center"
     android:padding="16dp">
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
     <TextView
-        android:id="@+id/selectedStackTextView"
+        android:id="@+id/stackName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -30,18 +36,22 @@
 
             <TextView
                 android:id="@+id/textViewNeu"
-                android:layout_width="wrap_content"
+                android:background="#FFFFFF"
+                android:layout_width="173dp"
                 android:layout_height="wrap_content"
-                android:text="Neu: 20"
-                android:textSize="25sp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:gravity="left"
+                android:text="Neu"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/textViewWiederholen"
-                android:layout_width="wrap_content"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
-                android:text="Wiederholen: 0"
-                android:textSize="25sp"/>
+                android:background="#FFFFFF"
+                android:gravity="left"
+                android:text="Wiederholen"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -56,16 +66,17 @@
                 android:id="@+id/buttonLernen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lernen"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:text="@string/button_text_learn"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/buttonVorschau"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vorschau"
-                android:textSize="18sp"/>
+                android:enabled="false"
+                android:text="@string/button_text_preview"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

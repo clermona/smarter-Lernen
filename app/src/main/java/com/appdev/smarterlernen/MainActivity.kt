@@ -4,16 +4,22 @@ import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.viewpager.widget.ViewPager
 import com.appdev.smarterlernen.database.AppDatabase
+import com.appdev.smarterlernen.database.entities.Card
 import com.appdev.smarterlernen.database.entities.Stack
 import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.appdev.smarterlernen.database.interfaces.StackDao
 import com.appdev.smarterlernen.databinding.ActivityMainBinding
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+
 import com.google.android.material.tabs.TabLayout
 import com.gtappdevelopers.kotlingfgproject.CardManagement
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +29,7 @@ import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
+
     private lateinit var viewPager: ViewPager
     lateinit var binding: ActivityMainBinding
 
@@ -40,21 +47,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        setSupportActionBar(binding.toolbar)
 
         // TO BE DELETED
         database = AppDatabase.getInstance(this)
         stackDao = database.stackDao()
         cardDao = database.cardDao()
 
-        val list = listOf(Stack("Example"))
+        val list = listOf(Stack("AppDev",0), Stack("SecLab",0))
 
         for (test in list) {
             runBlocking {
                 launch(Dispatchers.Default) {
                     if (test.title?.let { stackDao.getByTitle(it) } != null) {
                         stackDao.update(test)
+
 
 
                     } else {
@@ -69,13 +77,6 @@ class MainActivity : AppCompatActivity() {
         tabLayout = binding.tabLayout
         viewPager = binding.viewPager
 
-        val fabAdd = binding.fabAdd
-        val fabAddCard = binding.fabAddCard
-        val fabAddStack = binding.fabAddStack
-        val txtFabCard = binding.txtAddCard
-        val txtFabStack = binding.txtAddStack
-
-        var isAllFabsVisible = false
 
         val adapter = PagerAdapter(supportFragmentManager)
         adapter.addFragment(
@@ -86,31 +87,29 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
 
-        fabAdd.setOnClickListener {
-            if (!isAllFabsVisible) {
-                fabAddCard.show()
-                fabAddStack.show()
-                txtFabCard.visibility = View.VISIBLE
-                txtFabStack.visibility = View.VISIBLE
-                isAllFabsVisible = true
-            } else {
-                fabAddCard.hide()
-                fabAddStack.hide()
-                txtFabCard.visibility = View.INVISIBLE
-                txtFabStack.visibility = View.INVISIBLE
-                isAllFabsVisible = false
-            }
-        }
 
-        fabAddCard.setOnClickListener {
-            val intent = Intent(this, AddCardActivity::class.java)
-            startActivity(intent)
-        }
 
-        fabAddStack.setOnClickListener {
-            val intent = Intent(this, AddStackActivity::class.java)
-            startActivity(intent)
-        }
 
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbar, menu)
+
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_addcard -> {
+                val intent = Intent(this, AddCardActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_addstack -> {
+                val intent = Intent(this, AddStackActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }

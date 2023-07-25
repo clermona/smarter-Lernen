@@ -4,12 +4,31 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="page_title_stacks">Stapel</string>
     <string name="page_title_management">Verwaltung</string>
-    <string name="fab_title_add_stack">Stapel hinzufügen</string>
-    <string name="fab_title_add_card">Karte hinzufügen</string>
     <string name="button_text_learn">Lernen</string>
     <string name="button_text_preview">Vorschau</string>
     <string name="button_text_add_card">Karte hinzufügen</string>
     <string name="button_text_create_stack">Stapel erstellen</string>
     <string name="label_stack_name" translatable="false">Name:</string>
     <string name="label_create_stack">Stapel erstellen</string>
+    <string name="label_card_preview">Kartenvorschau</string>
+    <string name="label_front_side">Vordere Seite</string>
+    <string name="label_back_side">Hintere Seite</string>
+    <string name="label_card_number">Karte %d von %d</string>
+    <string name="button_text_previous">Letzte</string>
+    <string name="button_text_next">Nächste</string>
+    <string name="button_text_save">Speichern</string>
+    <string name="button_text_delete">Löschen</string>
+    <string name="buttonShowBack">Antwort zeigen</string>
+    <string name="label_no_rating">Keine Bewertung</string>
+    <string name="label_rating">Bewertung: %s</string>
+    <string name="label_rating_easy">Leicht</string>
+    <string name="label_rating_medium">Mittel</string>
+    <string name="label_rating_difficult">Schwer</string>
+    <string name="label_question">Frage #%d</string>
+    <string name="label_stack">Stapel: %s</string>
+    <string name="label_answer">Antwort %d</string>
+    <string name="toast_rated_success">Erfolgreich bewertet</string>
+    <string name="label_new">Neu: %s</string>
+    <string name="label_repeat">Wiederholen: %s</string>
+
 </resources>
