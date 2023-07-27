@@ -1,5 +1,6 @@
 package com.appdev.smarterlernen
 
+import CardManagement
 import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
@@ -21,7 +22,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 
 import com.google.android.material.tabs.TabLayout
-import com.gtappdevelopers.kotlingfgproject.CardManagement
+//import com.gtappdevelopers.kotlingfgproject.CardManagement
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

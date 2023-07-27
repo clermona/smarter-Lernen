@@ -9,24 +9,11 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/idTVHead"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:padding="4dp"
-        android:text="Bar Chart"
-        android:textAlignment="center"
-        android:textColor="@color/pink"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <!--Ui component for our bar chart-->
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/idBarChart"
+        android:id="@+id/barChart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/idTVHead" />
+        android:layout_height="300dp"
+        />
+
 
 </RelativeLayout>

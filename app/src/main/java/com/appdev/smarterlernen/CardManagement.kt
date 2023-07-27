@@ -1,102 +1,46 @@
-package com.gtappdevelopers.kotlingfgproject
-
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.appdev.smarterlernen.R
-import com.appdev.smarterlernen.database.AppDatabase
-import com.appdev.smarterlernen.database.entities.Card
-import com.appdev.smarterlernen.database.entities.Stack
-import com.appdev.smarterlernen.database.interfaces.CardDao
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class CardManagement : Fragment() {
 
-    // on below line we are creating
-    // variables for our bar chart
-    lateinit var barChart: BarChart
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_card_management, container, false)
 
-    // on below line we are creating
-    // a variable for bar data
-    lateinit var barData: BarData
+        val barChart: BarChart = rootView.findViewById(R.id.barChart)
 
-    // on below line we are creating a
-    // variable for bar data set
-    lateinit var barDataSet: BarDataSet
+        // Create example data points
+        val entries = mutableListOf<BarEntry>()
+        entries.add(BarEntry(0f, 20f))  // Bar 1
+        entries.add(BarEntry(1f, 35f))  // Bar 2
+        entries.add(BarEntry(2f, 10f))  // Bar 3
 
-    // on below line we are creating array list for bar data
-    lateinit var barEntriesList: ArrayList<BarEntry>
+        // Customize the BarDataSet
+        val dataSet = BarDataSet(entries, "Data") // "Data" is the label for the dataset
+        dataSet.color = Color.MAGENTA // Set the color of the bars
 
-    //variablen fuer database
-    lateinit var database: AppDatabase
-    lateinit var cardDao: CardDao
+        // Create BarData and assign the BarDataSet to it
+        val data = BarData(dataSet)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        // Customize the appearance of the chart
+        barChart.setFitBars(true) // Make the bars fit the available space
+        barChart.description.isEnabled = false // Disable the chart description
+        barChart.data = data // Assign the BarData to the chart
 
-        //initialisieren der Datenbank
-        database = AppDatabase.getInstance(requireContext())
-        cardDao = database.cardDao()
+        // Refresh the chart to display the data
+        barChart.invalidate()
 
-        // on below line we are initializing
-        // our variable with their ids.
-       // barChart = findViewById(R.id.idBarChart)
-        val barChart = view?.findViewById<BarChart>(R.id.idBarChart)
-
-        // on below line we are calling get bar
-        // chart data to add data to our array list
-        getBarChartData()
-
-        // on below line we are initializing our bar data set
-        barDataSet = BarDataSet(barEntriesList, "Bar Chart Data")
-
-        // on below line we are initializing our bar data
-        barData = BarData(barDataSet)
-
-        // on below line we are setting data to our bar chart
-        if (barChart != null) {
-            barChart.data = barData
-        }
-
-        // on below line we are setting colors for our bar chart text
-        barDataSet.valueTextColor = Color.BLACK
-
-        // on below line we are setting color for our bar data set
-        barDataSet.setColor(resources.getColor(R.color.pink))
-
-        // on below line we are setting text size
-        barDataSet.valueTextSize = 16f
-
-        // on below line we are enabling description as false
-        if (barChart != null) {
-            barChart.description.isEnabled = false
-        }
-
+        return rootView
     }
-
-    private fun getBarChartData() {
-
-    }
-
-    //runBlocking unnd launch brauch ich immer bei der Datenbank
-//        if(title != null) {
-//            runBlocking {
-//                launch(Dispatchers.Default) {
-//                    if(stackDao.getByTitle(title)  != null) {
-//                        stackDao.update(Stack(title))
-//                    } else {
-//                        stackDao.insert(Stack(title))
-//                    }
-//                }
-//
-//    }
-
 }
