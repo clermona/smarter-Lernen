@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var cardDao: CardDao
     lateinit var stacks: List<Stack>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             StackOverviewFragment(),
             resources.getString(R.string.page_title_stacks)
         )
+
         adapter.addFragment(CardManagement(), resources.getString(R.string.page_title_management))
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)

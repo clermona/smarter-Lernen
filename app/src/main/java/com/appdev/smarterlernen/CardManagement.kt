@@ -17,47 +17,35 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class CardManagement(private val cards: List<Card>) : Fragment() {
+class CardManagement() : Fragment() {
 
     //variablen fuer database
     lateinit var database:AppDatabase
     lateinit var cardDao: CardDao
+    lateinit var cardList : List<Card>
+    val entries = mutableListOf<BarEntry>()
+    var countEasyCards = 0
+    lateinit var barChart: BarChart
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_card_management, container, false)
 
-        val barChart: BarChart = rootView.findViewById(R.id.barChart)
-
-        // Create example data points
-        val entries = mutableListOf<BarEntry>()
+        barChart = rootView.findViewById(R.id.barChart)
 
         database= AppDatabase.getInstance(requireContext())
         cardDao =database.cardDao()
 
-        val rating = cardDao.getById(1).rating
-        val ratingFloat : Float = rating.toFloat()
-
-        for ((index, card) in cards.withIndex()) {
-            entries.add(BarEntry(index.toFloat(), card.rating.toFloat()))
+        runBlocking {
+            launch(Dispatchers.Default) {
+                countEasyCards = cardDao.getCountEasyCards()
+            }
         }
 
-//        val stackId = intent.getIntExtra("stack_id", 0)
-//
-//        runBlocking {
-//            launch(Dispatchers.Default) {
-//                stack = stackDao.getById(stackId)
-//                cardList = cardDao.getByStackId(stackId)
-//            }
-//        }
-//
-
-//
-//        entries.add(BarEntry((ratingFloat, 1f))  // Bar 1
-//        entries.add(BarEntry(1f, 35f))  // Bar 2
-//        entries.add(BarEntry(2f, 10f))  // Bar 3
+        entries.add(BarEntry(0f, countEasyCards.toFloat()))
 
         // Customize the BarDataSet
         val dataSet = BarDataSet(entries, "Schwierigkeit") // "Data" is the label for the dataset
@@ -82,5 +70,19 @@ class CardManagement(private val cards: List<Card>) : Fragment() {
         barChart.invalidate()
 
         return rootView
+    }
+    override fun onResume() {
+        super.onResume()
+
+        runBlocking {
+            launch(Dispatchers.Default) {
+                countEasyCards = cardDao.getCountEasyCards()
+            }
+        }
+
+        entries.add(BarEntry(0f, countEasyCards.toFloat()))
+
+        barChart.invalidate()
+
     }
 }
