@@ -20,6 +20,10 @@ interface CardDao {
 
     @Query("SELECT count(*) from card where rating = 1")
     fun getCountEasyCards() : Int
+    @Query("SELECT count(*) from card where rating = 2")
+    fun getCountMediumCards() : Int
+    @Query("SELECT count(*) from card where rating = 3")
+    fun getCountHardCards() : Int
 
     @Update
     fun update(card: Card)
