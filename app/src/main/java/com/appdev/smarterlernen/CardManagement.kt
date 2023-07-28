@@ -17,18 +17,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class CardManagement() : Fragment() {
+class CardManagement : Fragment() {
 
-    //variablen fuer database
-    lateinit var database:AppDatabase
+    // Variablen fuer database
+    lateinit var database: AppDatabase
     lateinit var cardDao: CardDao
-    lateinit var cardList : List<Card>
+    lateinit var cardList: List<Card>
     val entries = mutableListOf<BarEntry>()
     var countEasyCards = 0
     lateinit var barChart: BarChart
 
     override fun onCreateView(
-
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -36,20 +35,22 @@ class CardManagement() : Fragment() {
 
         barChart = rootView.findViewById(R.id.barChart)
 
-        database= AppDatabase.getInstance(requireContext())
-        cardDao =database.cardDao()
+        database = AppDatabase.getInstance(requireContext())
+        cardDao = database.cardDao()
 
+        // Load the initial countEasyCards value and add the entry to the list
         runBlocking {
             launch(Dispatchers.Default) {
                 countEasyCards = cardDao.getCountEasyCards()
+                entries.clear()
+                entries.add(BarEntry(0f, countEasyCards.toFloat()))
+                updateChartData()
             }
         }
 
-        entries.add(BarEntry(0f, countEasyCards.toFloat()))
-
         // Customize the BarDataSet
-        val dataSet = BarDataSet(entries, "Schwierigkeit") // "Data" is the label for the dataset
-        dataSet.color = Color.GREEN // Set the color of the bars
+        val dataSet = BarDataSet(entries, "leicht") // "Data" is the label for the dataset
+        dataSet.color = Color.rgb(48,103,84) // Set the color of the bars
 
         // Create BarData and assign the BarDataSet to it
         val data = BarData(dataSet)
@@ -71,18 +72,39 @@ class CardManagement() : Fragment() {
 
         return rootView
     }
+
     override fun onResume() {
         super.onResume()
 
         runBlocking {
             launch(Dispatchers.Default) {
                 countEasyCards = cardDao.getCountEasyCards()
+                entries.clear()
+                entries.add(BarEntry(0f, countEasyCards.toFloat()))
+                updateChartData()
             }
         }
 
-        entries.add(BarEntry(0f, countEasyCards.toFloat()))
-
         barChart.invalidate()
+    }
 
+    private fun updateChartData() {
+        // Check if barChart.data is not null
+        val barData = barChart.data ?: BarData()
+        // Check if the BarDataSet exists or create a new one
+        val dataSet: BarDataSet = if (barData.dataSetCount > 0) {
+            barData.getDataSetByIndex(0) as BarDataSet
+        } else {
+            BarDataSet(entries, "Schwierigkeit")
+        }
+        dataSet.values = entries
+        dataSet.color = Color.GREEN // Set the color of the bars
+        // Add the dataset to the BarData
+        barData.addDataSet(dataSet)
+        // Set the BarData to the chart
+        barChart.data = barData
+        // Refresh the chart to display the updated data
+        barChart.invalidate()
     }
 }
+
