@@ -83,6 +83,8 @@ class CardBackFragment : Fragment()   {
         val buttonMittel = view.findViewById<Button>(R.id.buttonMittel)
         val buttonSchwer = view.findViewById<Button>(R.id.buttonSchwer)
         val cardId = view.findViewById<TextView>(R.id.cardId)
+        val buttonFrage = view.findViewById<Button>(R.id.butttonQuestion)
+
 
         val cardObject = arguments?.getSerializable("currentCard") as? Card
         val answer = view.findViewById<TextView>(R.id.textView3)
@@ -136,6 +138,10 @@ if (cardObject!=null) {
         }
         Toast.makeText(requireContext(), R.string.toast_rated_success, Toast.LENGTH_SHORT).show()
 
+    }
+
+    buttonFrage.setOnClickListener {
+        requireActivity().supportFragmentManager.popBackStack()
     }
 }
         // Inflate the layout for this fragment
