@@ -28,4 +28,5 @@
     <string name="toast_rated_success">Rated successfully</string>
     <string name="label_new">New: %s</string>
     <string name="label_repeat">Repeat: %s</string>
+    <string name="button_showQuestion">show question</string>
 </resources>

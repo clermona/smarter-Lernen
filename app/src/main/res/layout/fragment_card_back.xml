@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp">
 
@@ -37,7 +38,7 @@
                 android:text="Content der Rückseite"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,7 +55,8 @@
                     android:drawableTint="@color/green"
                     android:onClick="onbuttonLeichClick"
                     android:text="@string/label_rating_easy"
-                    app:backgroundTint="@color/green" />
+                    app:backgroundTint="@color/green"
+                    android:layout_marginBottom="2dp"/>
 
                 <Button
                     android:id="@+id/buttonMittel"
@@ -67,7 +69,8 @@
                     android:onClick="onbuttonMittelClick"
                     android:text="@string/label_rating_medium"
                     app:backgroundTint="@color/grey"
-                    app:cornerRadius="0dp" />
+                    app:cornerRadius="0dp"
+                    />
 
                 <Button
                     android:id="@+id/buttonSchwer"
@@ -79,10 +82,16 @@
                     android:onClick="onbuttonSchwerClick"
                     android:text="@string/label_rating_difficult"
                     app:backgroundTint="@color/red"
+                    app:cornerRadius="0dp"
+                    android:layout_marginBottom="2dp"/>
 
-                    app:cornerRadius="0dp" />
             </LinearLayout>
-
+            <Button
+                android:id="@+id/butttonQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borderbutton"
+                android:text="@string/button_showQuestion" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

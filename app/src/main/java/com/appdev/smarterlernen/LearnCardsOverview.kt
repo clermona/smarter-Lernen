@@ -1,5 +1,6 @@
 package com.appdev.smarterlernen
 
+import CardSnapHelper
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -37,6 +38,8 @@ class LearnCardsOverview: Fragment() {
         stackDao = database.stackDao()
         cardDao = database.cardDao()
         setupRecyclerView()
+        val snapHelper = CardSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerView)
 
         return view
     }
@@ -89,7 +92,7 @@ class LearnCardsOverview: Fragment() {
             })
 
             adapter.updateData(items)
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             recyclerView.adapter = adapter
         }
     }
