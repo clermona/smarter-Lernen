@@ -1,10 +1,10 @@
 package com.appdev.smarterlernen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.appdev.smarterlernen.databinding.ActivityLearnBinding
-import com.appdev.smarterlernen.databinding.ActivityMainBinding
 
 
 class LearnActivity : AppCompatActivity() {
@@ -15,6 +15,7 @@ class LearnActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val intent = intent
         val stackId = intent.getIntExtra("stackId", 0)
         val learnCardsOverview = LearnCardsOverview()
@@ -27,6 +28,12 @@ class LearnActivity : AppCompatActivity() {
             .commit()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        for (fragment in supportFragmentManager.fragments) {
+            fragment.onActivityResult(requestCode, resultCode, data)
+        }
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

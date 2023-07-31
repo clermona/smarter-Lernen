@@ -1,5 +1,7 @@
 package com.appdev.smarterlernen
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +45,7 @@ class CardBackFragment : Fragment()   {
     lateinit var stacks: List<Stack>
 
     var stackId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddCardBinding.inflate(layoutInflater)
@@ -141,7 +144,12 @@ if (cardObject!=null) {
     }
 
     buttonFrage.setOnClickListener {
+        val resultIntent = Intent()
+        requireActivity().setResult(Activity.RESULT_OK, resultIntent)
         requireActivity().supportFragmentManager.popBackStack()
+
+
+
     }
 }
         // Inflate the layout for this fragment

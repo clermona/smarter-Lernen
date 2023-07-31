@@ -1,11 +1,15 @@
 package com.appdev.smarterlernen
 
 import CardSnapHelper
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,10 +27,18 @@ class LearnCardsOverview: Fragment() {
     lateinit var stackDao: StackDao
     lateinit var cardDao: CardDao
     lateinit var items: List<Card>
+     var currentCard: Card? = null
      var stackId: Int = 0
+    var targetPosition :Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // Handle the result when the activity sets the result to RESULT_OK
+            // You can perform actions here based on the result
+        }
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_learn_cards, container, false)
@@ -34,6 +46,9 @@ class LearnCardsOverview: Fragment() {
         arguments?.let {
              stackId = it.getInt("selectedCards")
         }
+
+
+
         database = AppDatabase.getInstance(requireContext())
         stackDao = database.stackDao()
         cardDao = database.cardDao()
@@ -41,12 +56,17 @@ class LearnCardsOverview: Fragment() {
         val snapHelper = CardSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
 
+
+
+
         return view
     }
 
     override fun onResume() {
         super.onResume()
         setupRecyclerView()
+
+
     }
     private fun retrieveData() {
         runBlocking {
@@ -72,8 +92,16 @@ class LearnCardsOverview: Fragment() {
                 val newFragment = CardBackFragment()
 
                 val bundle = Bundle()
+                currentCard=item
                 bundle.putSerializable("currentCard", item)
                 newFragment.arguments = bundle
+
+                 targetPosition = items.indexOf(item)
+
+
+
+
+
 
 
                 fragmentManager.beginTransaction()
@@ -94,8 +122,20 @@ class LearnCardsOverview: Fragment() {
             adapter.updateData(items)
             recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             recyclerView.adapter = adapter
+            val index=items.indexOfFirst{it.id == currentCard?.id}
+            if(index>-1) {
+                recyclerView.post {
+                    recyclerView.scrollToPosition(index)
+                }
+            }
+
         }
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        //super.onActivityResult(requestCode, resultCode, data); comment this unless you
+
+   }
+
 
 }
 
