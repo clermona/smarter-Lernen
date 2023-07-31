@@ -34,12 +34,7 @@ class LearnCardsOverview: Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            // Handle the result when the activity sets the result to RESULT_OK
-            // You can perform actions here based on the result
-        }
-    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_learn_cards, container, false)
         recyclerView = view.findViewById(R.id.listRecyclerView2)
@@ -131,10 +126,7 @@ class LearnCardsOverview: Fragment() {
 
         }
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //super.onActivityResult(requestCode, resultCode, data); comment this unless you
 
-   }
 
 
 }

@@ -144,8 +144,7 @@ if (cardObject!=null) {
     }
 
     buttonFrage.setOnClickListener {
-        val resultIntent = Intent()
-        requireActivity().setResult(Activity.RESULT_OK, resultIntent)
+
         requireActivity().supportFragmentManager.popBackStack()
 
 

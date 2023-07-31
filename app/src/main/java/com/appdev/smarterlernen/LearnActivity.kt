@@ -28,12 +28,7 @@ class LearnActivity : AppCompatActivity() {
             .commit()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        for (fragment in supportFragmentManager.fragments) {
-            fragment.onActivityResult(requestCode, resultCode, data)
-        }
-    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
