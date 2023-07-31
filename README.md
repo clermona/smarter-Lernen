@@ -10,7 +10,7 @@ Zudem werden Sensoren wie der Annäherungssensor verwendet um eine Karte zu swip
 
 ### Funktionen
 Des Weiteren gibt es eine Bewertungsfunktion, um die Qualität/ Priorität bewerten zu können.
-Es sollte auch agnezeigt werden welche Karten  mit welcher Schwierigkeit beantwortet wurden in einer Statistik.
+In der Statistik sollte die durchschnittliche Schwierigkeit, mit der die Fragen über alle Stapel beantwortet wurden, dargestellt werden.
 
 ### Copyright
 © 2023 - Annabelle Clermont, Laura Likar, Verena Rath, Dominik Hartl
